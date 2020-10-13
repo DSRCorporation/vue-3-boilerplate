@@ -1,10 +1,10 @@
 # :exclamation: Under development! Use it carefully! :exclamation:
 
-# Vue 3 boilerplate by DSR Corporation
+# Vue 3 boilerplate by DSR Corporation 
 
 This is vue 3 project architecture that resolves most of the problems developers usually need to resolve on the project start-up such as project structure/state management/dependencies management/auth framework/basic components etc. It allows starting development rapidly.
 
-> *Please note*: This boilerplate is based on the recently released vue 3.0. Vue 3.x ecosystem is quite young which creates obvious problems but it grows very fast. Vue 3.x provides significant [improvements](https://github.com/vuejs/vue-next/releases/tag/v3.0.0).
+> *Please note*: This boilerplate is based on the recently released vue 3.0. Vue 3.x ecosystem is quite young which creates obvious problems but it grows very fast. Vue 3.x provides significant [improvements](https://github.com/vuejs/vue-next/releases/tag/v3.0.0). 
 > This project will be updating with vue 3.0 ecosystem changes.
 
 ## Table of contents
@@ -18,7 +18,7 @@ This is vue 3 project architecture that resolves most of the problems developers
 
 ## Prerequisites
 
-- NPM **> 6.x**
+- NPM **> 6.x**  
 
 ## How to use
 
@@ -32,12 +32,13 @@ Just copy content of this repo and use it as a skeleton. You are free to do any 
 
 - Code validation
 	- Esling configuration :white_check_mark:
+	- Prettier :white_check_mark:
 	- Typescript and tsconfig.json configuration :white_check_mark:
 - State management
 	- Integration of Vuex 4.x :white_check_mark:
 	- Examples (login/logout) :white_check_mark:
 	- Typings improvements :x: we hope for improvements from the vuex team (vuex 4.x is in beta now)
-	- Enhanced dependency injection in vuex modules :x:
+	- Enhanced dependency injection in vuex modules :x: 
 - Dependencies management (please watch our [presentation](https://youtu.be/iBzovd4QlEI) on youtube)
 	- [Tsyringe](https://github.com/microsoft/tsyringe) integration :white_check_mark:
 	- Examples (Logger, toaster, user service) :white_check_mark:

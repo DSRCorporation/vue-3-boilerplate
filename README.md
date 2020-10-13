@@ -42,6 +42,12 @@ Just copy content of this repo and use it as a skeleton. You are free to do any 
 - Dependencies management (please watch our [presentation](https://youtu.be/iBzovd4QlEI) on youtube)
 	- [Tsyringe](https://github.com/microsoft/tsyringe) integration :white_check_mark:
 	- Examples (Logger, toaster, user service) :white_check_mark:
+- Vue 3 composition API
+	- Basic examples (i18-n, vuex useStore) :white_check_mark:
+	- Advanced examples :x:
+- Components
+	- [Vue class components](https://github.com/vuejs/vue-class-component) :white_check_mark:
+	- Render function based components examples :x:
 - Localization
 	- [vue-i18n](https://kazupon.github.io/vue-i18n/) integration :white_check_mark:
 - Basic components

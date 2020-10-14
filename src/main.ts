@@ -11,14 +11,20 @@ import { ErrorHandler } from "@/services/errorHandler";
 import InjectionToken from "tsyringe/dist/typings/providers/injection-token";
 import i18n from "@/lang/i18n";
 import { initContainer } from "@/services/helpers/containerInitialization";
+import { ValidationHelper } from "@/validation/validationHelper";
 
 // Step 1: Creation of Vue application
 const app = createApp(App);
 
 // Step 2: Initialization of DI Container
-initContainer(app);
+const container = initContainer(app);
 
-// Step 3: Installing required plugins
+// Step 3: Define global validation rules
+container
+  .resolve<ValidationHelper>(TYPES.ValidationHelper)
+  .defineValidationRules();
+
+// Step 4: Installing required plugins
 app
   .use(router)
   .use(store)
@@ -33,5 +39,5 @@ app
   )
   .use(i18n);
 
-// Step 4: Mount Vue Application
+// Step 5: Mount Vue Application
 app.mount("#app");

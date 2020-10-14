@@ -5,6 +5,7 @@ import router from "@/router";
 import i18n from "@/lang/i18n";
 import { Toaster, IToaster } from "@/services/toaster";
 import { ILogger, Logger } from "@/services/logger";
+import { ValidationHelper } from "@/validation/validationHelper";
 
 /**
  * Initial setup of DI Container
@@ -22,4 +23,9 @@ export function initContainer<HostElement>(app: App<HostElement>) {
   container.register<ILogger>(TYPES.ILogger, {
     useClass: Logger
   });
+  container.register<ValidationHelper>(TYPES.ValidationHelper, {
+    useClass: ValidationHelper
+  });
+
+  return container;
 }

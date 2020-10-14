@@ -56,7 +56,9 @@ Just copy content of this repo and use it as a skeleton. You are free to do any 
 	- Svg icon :x:
 	- Dropdown :x:
 	- Checkbox/Radio :x:
-- Form validation/validation framework :x:
+- Form validation/validation framework
+    - Client-side form validation :white_check_mark:
+    - Show backend form errors :x:
 - Common functionality
 	- Login form :white_check_mark:
 	- Auth framework (token) :white_check_mark: (partially done)

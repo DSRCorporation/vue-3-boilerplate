@@ -27,5 +27,9 @@ export function initContainer<HostElement>(app: App<HostElement>) {
     useClass: ValidationHelper
   });
 
+  if (window.Cypress) {
+    window.$container = container;
+  }
+
   return container;
 }

@@ -17,3 +17,10 @@ declare module "@vue/runtime-core" {
     $errorHandler: ErrorHandler;
   }
 }
+
+declare global {
+  interface Window {
+    Cypress: any;
+    $container: any;
+  }
+}

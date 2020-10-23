@@ -1,7 +1,9 @@
 export const messages = {
-  en: {
+  "en-US": {
     login: "Log In",
     logout: "Log Out",
+    crud: "Crud",
+    cats: "Cats",
 
     formError: {
       required: "{field} is required.",

@@ -12,6 +12,7 @@ import InjectionToken from "tsyringe/dist/typings/providers/injection-token";
 import i18n from "@/lang/i18n";
 import { initContainer } from "@/services/helpers/containerInitialization";
 import { ValidationHelper } from "@/validation/validationHelper";
+import { AppConfig } from "@/services/appConfig";
 
 // Step 1: Creation of Vue application
 const app = createApp(App);
@@ -33,7 +34,8 @@ app
     serviceInjectionPlugin(
       new Map<string, InjectionToken<any>>([
         ["$logger", TYPES.ILogger],
-        ["$errorHandler", ErrorHandler]
+        ["$errorHandler", ErrorHandler],
+        ["$appConfig", AppConfig]
       ])
     )
   )

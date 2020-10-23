@@ -17,7 +17,7 @@ describe("Login Form", () => {
   });
 
   it("logins user in", () => {
-    cy.get('[name="username"]').type("dmitry");
+    cy.get('[name="email"]').type("dmitry");
     cy.get('[name="password"]').type("dmitry");
     cy.get("button").click();
     cy.location("pathname").should("be", "/");

@@ -2,7 +2,7 @@ import { singleton } from "tsyringe";
 
 export interface Log {
   level: "info" | "error" | "warn";
-  message: string;
+  message: Array<any>;
 }
 
 export interface ILogger {
@@ -22,23 +22,34 @@ function formatMessage(args: Array<any>) {
       return current + " " + JSON.stringify(value);
     }
 
-    return current;
+    return current + " " + value;
   }, "");
 }
 
-export function logToConsole(log: Log) {
+export function logToConsole(
+  log: Log,
+  messageFormatter?: (args: Array<any>) => string
+) {
   switch (log.level) {
     case "info":
-      console.log(log.message);
+      messageFormatter
+        ? console.log(messageFormatter(log.message))
+        : console.log(...log.message);
       break;
     case "error":
-      console.error(log.message);
+      messageFormatter
+        ? console.error(messageFormatter(log.message))
+        : console.error(...log.message);
       break;
     case "warn":
-      console.warn(log.message);
+      messageFormatter
+        ? console.warn(messageFormatter(log.message))
+        : console.warn(...log.message);
       break;
     default:
-      console.log(log.message);
+      messageFormatter
+        ? console.log(messageFormatter(log.message))
+        : console.log(...log.message);
   }
 }
 
@@ -47,28 +58,40 @@ export class Logger implements ILogger {
   messages: Array<Log> = [];
 
   constructor(
-    private logger: (log: Log) => void = logToConsole,
+    private logger: (
+      log: Log,
+      messageFormatter?: (args: Array<any>) => string
+    ) => void = logToConsole,
     private messageFormatter?: (args: Array<any>) => string
   ) {}
 
   public logInfo(...args: Array<any>) {
-    this.logger({
-      level: "info",
-      message: (this.messageFormatter ?? formatMessage)(args)
-    });
+    this.logger(
+      {
+        level: "info",
+        message: args
+      },
+      this.messageFormatter
+    );
   }
 
   public logError(...args: Array<any>) {
-    this.logger({
-      level: "error",
-      message: (this.messageFormatter ?? formatMessage)(args)
-    });
+    this.logger(
+      {
+        level: "error",
+        message: args
+      },
+      this.messageFormatter
+    );
   }
 
   public logWarn(...args: Array<any>) {
-    this.logger({
-      level: "warn",
-      message: (this.messageFormatter ?? formatMessage)(args)
-    });
+    this.logger(
+      {
+        level: "warn",
+        message: args
+      },
+      this.messageFormatter
+    );
   }
 }

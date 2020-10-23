@@ -42,18 +42,21 @@ export default class VInput extends Vue {
 </script>
 
 <style scoped lang="scss">
+@import "../scss/constants";
+@import "../scss/typography";
+
 label {
-  color: #ffffff;
+  color: $textColor;
 }
 
 .input {
-  height: 24px;
+  height: $gridNormal * 2;
   background: transparent;
-  width: calc(100% - 8px);
-  border: 1px solid #a383a5;
+  width: calc(100% - #{$gridSmall});
+  border: $borderSmall solid $borderColor;
   text-align: center;
   padding: 0 4px;
-  color: #ffffff;
-  font-size: 14px;
+  color: $textColor;
+  @include text-normal;
 }
 </style>

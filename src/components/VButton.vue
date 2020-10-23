@@ -12,26 +12,24 @@ export default class VButton extends Vue {}
 
 <style scoped lang="scss">
 @import "src/scss/constants";
+@import "src/scss/typography";
 
 .button {
-  background: $cornFlower;
-  background-image: linear-gradient(to bottom, $cornFlower, $flamingoPink);
+  background: $primaryColor;
   border-radius: 4px;
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 300;
-  padding: 8px;
-  box-shadow: 1px 1px 20px 0px $biscay;
-  text-shadow: 0px 0px 20px $biscay;
-  border: solid $cornFlower 0px;
-  text-decoration: none;
+  color: $textLightColor;
+  @include text-normal;
+  font-weight: $fontWeightMedium;
+  padding: $gridSmall $gridNormal;
+  border: none;
+  text-transform: uppercase;
   display: inline-block;
   cursor: pointer;
   text-align: center;
+  letter-spacing: 0.05em;
 
   &:hover {
-    background: $flamingoPink;
-    background-image: linear-gradient(to bottom, $flamingoPink, $cornFlower);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.12);
   }
 
   &:active {

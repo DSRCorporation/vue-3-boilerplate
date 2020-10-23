@@ -31,6 +31,8 @@ export default class LoginView extends Vue {
 </script>
 
 <style scoped lang="scss">
+@import "../scss/constants";
+
 .login-view {
   display: flex;
   align-items: center;
@@ -38,7 +40,7 @@ export default class LoginView extends Vue {
   width: 100%;
   height: 100%;
   &__form {
-    width: 300px;
+    width: $gridLarge * 10;
   }
 }
 </style>

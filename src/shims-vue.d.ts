@@ -1,6 +1,7 @@
 import { InstalledPlugins } from "@/vue-component-types";
 import { Logger } from "@/services/logger";
 import { ErrorHandler } from "@/services/errorHandler";
+import { AppConfig } from "@/services/appConfig";
 
 declare module "*.vue" {
   // eslint-disable-next-line
@@ -15,6 +16,7 @@ declare module "@vue/runtime-core" {
     // define services here
     $logger: Logger;
     $errorHandler: ErrorHandler;
+    $appConfig: AppConfig;
   }
 }
 

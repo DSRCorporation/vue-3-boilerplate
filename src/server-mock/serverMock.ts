@@ -71,6 +71,7 @@ new Server({
       }
     })
 
+    // uncomment it if you need to pass your requests to the server
     /*this.passthrough((request)=> {
       return true;
     });*/

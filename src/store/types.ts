@@ -2,7 +2,8 @@ import { CommonState } from "@/store/common";
 import { ActionContext } from "vuex";
 
 export enum StoreModules {
-  COMMON = "common"
+  COMMON = "common",
+  CATS = "cats"
 }
 
 //todo typings for dispatch, commit, getter?

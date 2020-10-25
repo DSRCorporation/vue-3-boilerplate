@@ -47,14 +47,14 @@ Just copy content of this repo and use it as a skeleton. You are free to do any 
 	- Advanced examples :x:
 - Components
 	- [Vue class components](https://github.com/vuejs/vue-class-component) :white_check_mark:
-	- Render function based components examples :x:
+	- Render function based components examples :white_check_mark: (ListRenderer component)
 	- Types for *$props* in *setup* helper :x:
 - Localization
 	- [vue-i18n](https://kazupon.github.io/vue-i18n/) integration :white_check_mark:
 - Basic components
 	- Button :white_check_mark:
 	- Input :white_check_mark:
-	- Svg icon :x:
+	- Svg icon :white_check_mark:
 	- Dropdown :x:
 	- Checkbox/Radio :x:
 - Form validation/validation framework
@@ -64,13 +64,13 @@ Just copy content of this repo and use it as a skeleton. You are free to do any 
 	- Login form :white_check_mark:
 	- Auth framework (token) :white_check_mark: (partially done)
 	- Lazy loading example (Login) :white_check_mark:
-	- Basic header, several example pages (list and view) :x:
+	- Basic header, several example pages (list and view) :white_check_mark: (partially done)
 - CSS
 	- scss + BEM :white_check_mark:
-	- Make it beautiful (introduce design system) :x:
+	- Make it beautiful (introduce design system) :white_check_mark:
 - Testing
 	- Integrate testing frameworks - [Cypress](https://www.cypress.io/) :white_check_mark:
-	- Example tests :x:
+	- Example tests :white_check_mark:
 	- DI integration example  :x:
 - API mocking (if you BE development goes in parallel and you need to mock API)
 	-  [MirageJs](https://miragejs.com/) integration :white_check_mark:

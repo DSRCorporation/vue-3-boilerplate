@@ -1,11 +1,8 @@
 <template>
-  <div class="home">
-    <div class="home-logout">
-      <v-button @click="logout" class="button">
-        {{ i18n.t("logout") }}
-      </v-button>
-    </div>
-  </div>
+  <article class="main">
+    <v-header @logout="logout"></v-header>
+    <router-view></router-view>
+  </article>
 </template>
 
 <script lang="ts">
@@ -15,13 +12,15 @@ import { useI18n } from "vue-i18n";
 import { Store, useStore } from "vuex";
 import { RootState, StoreModules } from "@/store/types";
 import { CommonActionTypes } from "@/store/common";
+import VHeader from "@/components/VHeader.vue";
 
 @Options({
   components: {
-    VButton
+    VButton,
+    VHeader
   }
 })
-export default class Home extends Vue {
+export default class Main extends Vue {
   i18n = setup(() => useI18n());
   store: Store<RootState> = setup(() => useStore());
 
@@ -38,14 +37,9 @@ export default class Home extends Vue {
 </script>
 
 <style scoped lang="scss">
-.home {
+.main {
   display: flex;
   flex-direction: column;
   height: inherit;
-  &-logout {
-    display: flex;
-    justify-content: flex-end;
-    padding: 16px;
-  }
 }
 </style>

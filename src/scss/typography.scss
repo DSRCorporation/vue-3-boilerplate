@@ -1,0 +1,37 @@
+@import "constants";
+
+@mixin text-big {
+  font-size: $fontSizeBig;
+  font-weight: $fontWeightMedium;
+  line-height: $lineHeightNormal;
+}
+
+@mixin text-small {
+  font-size: $fontSizeSmall;
+  font-weight: $fontWeightMedium;
+  line-height: $lineHeightSmall;
+}
+
+@mixin text-normal {
+  font-size: $fontSizeNormal;
+  line-height: $lineHeightNormal;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+}
+
+h4 {
+  @include text-big;
+}
+
+h3 {
+  font-size: $fontSizeLarge;
+  line-height: $lineHeightLarge;
+  font-weight: $fontWeightNormal;
+}

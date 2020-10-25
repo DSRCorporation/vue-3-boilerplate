@@ -1,9 +1,4 @@
-import {
-  ActionContext,
-  ActionTree,
-  MutationTree,
-  Store as VuexStore
-} from "vuex";
+import { ActionContext, ActionTree, MutationTree } from "vuex";
 import { AugmentedActionContext, RootState } from "@/store/types";
 import { Credentials, UserService } from "@/services/userService";
 import { Logger } from "@/services/logger";
@@ -87,8 +82,8 @@ const actions: ActionTree<CommonState, RootState> & CommonActions = {
       deps.logger.logError(e);
       return;
     }
-    commit("setToken", token);
-    await deps.router.push({ name: "Home" });
+    commit(CommonMutationTypes.SET_TOKEN, token);
+    await deps.router.push({ name: "Main" });
   },
 
   [CommonActionTypes.LOGOUT]: async ({

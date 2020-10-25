@@ -46,7 +46,6 @@
     "tests/**/*.tsx"
   ],
   "exclude": [
-    "node_modules",
-    "src/services/ErrorToaster.ts"
+    "node_modules"
   ]
 }

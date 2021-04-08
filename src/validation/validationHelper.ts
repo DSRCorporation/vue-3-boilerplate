@@ -15,7 +15,7 @@ export class ValidationHelper {
       validateOnModelUpdate: true // controls if `update:modelValue` events should trigger validation with `handleChange` handler
     });
 
-    defineRule("required", (value, _, ctx) => {
+    defineRule<string | null>("required", (value, _, ctx) => {
       if (!value || !value.length) {
         return this.i18n.global.t("formError.required", { field: ctx.field });
       }
@@ -23,7 +23,7 @@ export class ValidationHelper {
       return true;
     });
 
-    defineRule("minLength", (value, params, ctx) => {
+    defineRule<string | null>("minLength", (value, params, ctx) => {
       const limit = (params as Array<string>)[0];
 
       if (!value || !value.length) {
@@ -40,7 +40,7 @@ export class ValidationHelper {
       return true;
     });
 
-    defineRule("maxLength", (value, params, ctx) => {
+    defineRule<string | null>("maxLength", (value, params, ctx) => {
       const limit = (params as Array<string>)[0];
 
       if (!value || !value.length) {

@@ -19,10 +19,10 @@ describe("Login Form", () => {
   it("logins user in", () => {
     cy.get('[name="email"]').type("dmitry");
     cy.get('[name="password"]').type("dmitry");
-    cy.get("button").click();
-    cy.location("pathname").should("be", "/");
+    cy.get(".login-form__submit").click();
     // probably not the best way to wait until a page navigation, looks like there is no a good way in cypress for now
     cy.wait(100);
+    cy.location("pathname").should("contain", "/cats");
     cy.getLocalStorage("token").should("exist");
   });
 

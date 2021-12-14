@@ -11,17 +11,17 @@ import { CommonActionTypes } from "@/store/common";
 @Options({})
 export default class App extends Vue {
   async created() {
-    axios.interceptors.request.use(config => {
+    axios.interceptors.request.use((config) => {
       const token = this.$store.state.common.token;
 
-      if (token) {
+      if (token && config.headers) {
         config.headers["Authorization"] = `Bearer ${token}`;
       }
 
       return config;
     });
 
-    axios.interceptors.response.use(undefined, async err => {
+    axios.interceptors.response.use(undefined, async (err) => {
       if (
         err.response &&
         err.response.status === 401 &&

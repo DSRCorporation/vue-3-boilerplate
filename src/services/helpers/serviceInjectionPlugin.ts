@@ -14,14 +14,14 @@ function lazyInjection<InjectedType, HostElement = any>(
         injection = container.resolve<InjectedType>(serviceIdentifier);
       }
       return injection;
-    }
+    },
   });
 }
 
 export default (options: Map<string, InjectionToken<any>>) => ({
   install: <HostElement = any>(app: App<HostElement>) => {
-    options.forEach((serviceIdentifier, key) =>
-      lazyInjection(app, key, serviceIdentifier)
-    );
-  }
+    options.forEach((serviceIdentifier, key) => {
+      lazyInjection(app, key, serviceIdentifier);
+    });
+  },
 });

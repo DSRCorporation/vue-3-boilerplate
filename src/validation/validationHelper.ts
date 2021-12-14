@@ -12,7 +12,7 @@ export class ValidationHelper {
       validateOnBlur: true, // controls if `blur` events should trigger validation with `handleChange` handler
       validateOnChange: true, // controls if `change` events should trigger validation with `handleChange` handler
       validateOnInput: true, // controls if `input` events should trigger validation with `handleChange` handler
-      validateOnModelUpdate: true // controls if `update:modelValue` events should trigger validation with `handleChange` handler
+      validateOnModelUpdate: true, // controls if `update:modelValue` events should trigger validation with `handleChange` handler
     });
 
     defineRule<string | null>("required", (value, _, ctx) => {
@@ -33,7 +33,7 @@ export class ValidationHelper {
       if (value.length < Number(limit)) {
         return this.i18n.global.t("formError.minLength", {
           field: ctx.field,
-          limit
+          limit,
         });
       }
 
@@ -50,7 +50,7 @@ export class ValidationHelper {
       if (value.length > Number(limit)) {
         return this.i18n.global.t("formError.maxLength", {
           field: ctx.field,
-          limit
+          limit,
         });
       }
 

@@ -4,5 +4,5 @@ export const TYPES = {
   i18n: Symbol.for("i18n"),
   IToaster: Symbol.for("IToaster"),
   ILogger: Symbol.for("ILogger"),
-  ValidationHelper: Symbol.for("ValidationHelper")
+  ValidationHelper: Symbol.for("ValidationHelper"),
 };

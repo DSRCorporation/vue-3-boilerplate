@@ -14,7 +14,7 @@ module.exports = (on, config) => {
     "file:preprocessor",
     webpack({
       webpackOptions: require("@vue/cli-service/webpack.config"),
-      watchOptions: {}
+      watchOptions: {},
     })
   );
 
@@ -24,6 +24,6 @@ module.exports = (on, config) => {
     screenshotsFolder: "tests/e2e/screenshots",
     videosFolder: "tests/e2e/videos",
     supportFile: "tests/e2e/support/index.js",
-    nodeVersion: "system"
+    nodeVersion: "system",
   });
 };

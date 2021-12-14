@@ -17,8 +17,8 @@ import VHeader from "@/components/VHeader.vue";
 @Options({
   components: {
     VButton,
-    VHeader
-  }
+    VHeader,
+  },
 })
 export default class Main extends Vue {
   i18n = setup(() => useI18n());
@@ -36,7 +36,7 @@ export default class Main extends Vue {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .main {
   display: flex;
   flex-direction: column;

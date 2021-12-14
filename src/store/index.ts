@@ -5,6 +5,6 @@ import cats from "@/store/cats";
 export default createStore({
   modules: {
     common,
-    cats
-  }
+    cats,
+  },
 });

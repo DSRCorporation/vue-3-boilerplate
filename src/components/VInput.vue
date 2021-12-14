@@ -19,7 +19,7 @@ import { Options, Vue, setup } from "vue-class-component";
 import { useField } from "vee-validate";
 
 @Options({
-  props: { label: String, modelValue: String, type: String, name: String }
+  props: { label: String, modelValue: String, type: String, name: String },
 })
 export default class VInput extends Vue {
   //todo types for $props?

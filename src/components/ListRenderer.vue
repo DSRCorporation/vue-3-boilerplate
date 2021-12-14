@@ -4,13 +4,13 @@ import { h, PropType, defineComponent } from "vue";
 export default defineComponent({
   props: {
     items: {
-      type: Array as PropType<Array<any>>
+      type: Array as PropType<Array<any>>,
     },
     keyProp: {
       type: String as PropType<string>,
-      default: "id"
+      default: "id",
     },
-    thumbnailWidth: String
+    thumbnailWidth: String,
   },
   render() {
     if (!this.items || !this.$slots.default) {
@@ -29,17 +29,17 @@ export default defineComponent({
       "ul",
       {
         className,
-        style
+        style,
       },
-      this.items.map(item => {
+      this.items.map((item) => {
         return h(
           "li",
           { key: item[this.keyProp] },
-          this.$slots.default!({ item: item })
+          this.$slots.default?.({ item: item })
         );
       })
     );
-  }
+  },
 });
 </script>
 

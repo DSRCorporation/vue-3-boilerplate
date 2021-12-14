@@ -17,11 +17,11 @@ import { Cat } from "@/types/cats";
 
 @Options({
   props: {
-    cat: Object
+    cat: Object,
   },
   components: {
-    VThumbnail
-  }
+    VThumbnail,
+  },
 })
 export default class CatThumbnail extends Vue {
   cat!: Cat;

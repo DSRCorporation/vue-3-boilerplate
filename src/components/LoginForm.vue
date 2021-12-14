@@ -45,18 +45,19 @@ import { Credentials } from "@/services/userService";
 import { useI18n } from "vue-i18n";
 import { Form as VeeForm, Field } from "vee-validate";
 import SvgIcon from "@/components/SvgIcon.vue";
+import * as yup from "yup";
 
 @Options({
-  components: { VButton, VInput, VeeForm, Field, SvgIcon }
+  components: { VButton, VInput, VeeForm, Field, SvgIcon },
 })
 export default class LoginForm extends Vue {
   credentials: Credentials = { email: "", password: "" };
   i18n = setup(() => useI18n());
 
-  validation = {
-    username: "required",
-    password: "required|minLength:4"
-  };
+  validation = yup.object().shape({
+    email: yup.string().required(),
+    password: yup.string().required().min(4),
+  });
 
   submit() {
     this.$emit("login", this.credentials);
@@ -73,7 +74,7 @@ export default class LoginForm extends Vue {
   flex-direction: column;
   background-color: $backgroundLightColor;
   padding: $gridLarge;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12), 0px 2px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.24);
   border-radius: 2px;
 
   &__logo {

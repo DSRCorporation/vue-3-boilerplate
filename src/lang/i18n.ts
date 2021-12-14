@@ -3,5 +3,5 @@ import { messages } from "@/lang/index";
 
 export default createI18n({
   locale: "en-US",
-  messages
+  messages,
 });

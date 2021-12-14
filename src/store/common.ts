@@ -6,6 +6,7 @@ import { Router } from "vue-router";
 import { ErrorHandler } from "@/services/errorHandler";
 import { container } from "tsyringe";
 import { TYPES } from "@/services/helpers/containerTypes";
+import { AxiosError } from "axios";
 
 const deps = {
   get userService() {
@@ -19,7 +20,7 @@ const deps = {
   },
   get errorHandler() {
     return container.resolve(ErrorHandler);
-  }
+  },
 };
 
 export interface CommonState {
@@ -27,7 +28,7 @@ export interface CommonState {
 }
 
 export enum CommonMutationTypes {
-  SET_TOKEN = "setToken"
+  SET_TOKEN = "setToken",
 }
 
 export interface CommonMutations {
@@ -36,7 +37,7 @@ export interface CommonMutations {
 
 export enum CommonActionTypes {
   LOGIN = "login",
-  LOGOUT = "logout"
+  LOGOUT = "logout",
 }
 
 type CommonActionContext = AugmentedActionContext<CommonMutations, CommonState>;
@@ -50,7 +51,7 @@ export interface CommonActions {
 }
 
 const state = {
-  token: localStorage.getItem("token")
+  token: localStorage.getItem("token"),
 };
 
 const mutations: MutationTree<CommonState> & CommonMutations = {
@@ -64,7 +65,7 @@ const mutations: MutationTree<CommonState> & CommonMutations = {
       localStorage.removeItem("token");
     }
     state.token = token;
-  }
+  },
 };
 
 const actions: ActionTree<CommonState, RootState> & CommonActions = {
@@ -76,8 +77,9 @@ const actions: ActionTree<CommonState, RootState> & CommonActions = {
     try {
       token = await deps.userService.login(payload);
     } catch (e) {
-      if (e.response?.status === 401) {
-        deps.errorHandler.handleBackendError(e);
+      const error = e as AxiosError;
+      if (error.response?.status === 401) {
+        deps.errorHandler.handleBackendError(error);
       }
       deps.logger.logError(e);
       return;
@@ -87,16 +89,16 @@ const actions: ActionTree<CommonState, RootState> & CommonActions = {
   },
 
   [CommonActionTypes.LOGOUT]: async ({
-    commit
+    commit,
   }: ActionContext<CommonState, RootState>) => {
     commit("setToken", undefined);
     await deps.router.push({ name: "Login" });
-  }
+  },
 };
 
 export default {
   namespaced: true,
   state,
   mutations,
-  actions
+  actions,
 };

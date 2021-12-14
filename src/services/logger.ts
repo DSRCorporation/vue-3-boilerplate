@@ -69,7 +69,7 @@ export class Logger implements ILogger {
     this.logger(
       {
         level: "info",
-        message: args
+        message: args,
       },
       this.messageFormatter
     );
@@ -79,7 +79,7 @@ export class Logger implements ILogger {
     this.logger(
       {
         level: "error",
-        message: args
+        message: args,
       },
       this.messageFormatter
     );
@@ -89,7 +89,7 @@ export class Logger implements ILogger {
     this.logger(
       {
         level: "warn",
-        message: args
+        message: args,
       },
       this.messageFormatter
     );

@@ -3,7 +3,7 @@ import { ActionContext } from "vuex";
 
 export enum StoreModules {
   COMMON = "common",
-  CATS = "cats"
+  CATS = "cats",
 }
 
 //todo typings for dispatch, commit, getter?

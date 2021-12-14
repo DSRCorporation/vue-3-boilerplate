@@ -30,7 +30,7 @@ export default class CatsView extends Vue {
       loadCats() {
         store.dispatch(`${StoreModules.CATS}/${CatsActionTypes.LOAD_CATS}`);
       },
-      cats: computed(() => store.state.cats.cats)
+      cats: computed(() => store.state.cats.cats),
     };
   });
 

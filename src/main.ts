@@ -35,7 +35,7 @@ app
       new Map<string, InjectionToken<any>>([
         ["$logger", TYPES.ILogger],
         ["$errorHandler", ErrorHandler],
-        ["$appConfig", AppConfig]
+        ["$appConfig", AppConfig],
       ])
     )
   )

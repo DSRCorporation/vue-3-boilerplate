@@ -7,6 +7,7 @@ import { CatService } from "@/services/catService";
 import { AugmentedActionContext, RootState } from "@/store/types";
 import { Cat } from "@/types/cats";
 import { ActionContext, ActionTree, MutationTree } from "vuex";
+import { AxiosError } from "axios";
 
 const deps = {
   get catService() {
@@ -20,7 +21,7 @@ const deps = {
   },
   get errorHandler() {
     return container.resolve(ErrorHandler);
-  }
+  },
 };
 
 export interface CatsState {
@@ -28,7 +29,7 @@ export interface CatsState {
 }
 
 export enum CatsMutationTypes {
-  SET_CATS = "setCats"
+  SET_CATS = "setCats",
 }
 
 export interface CatsMutations {
@@ -36,7 +37,7 @@ export interface CatsMutations {
 }
 
 export enum CatsActionTypes {
-  LOAD_CATS = "loadCats"
+  LOAD_CATS = "loadCats",
 }
 
 type CatsActionContext = AugmentedActionContext<CatsMutations, CatsState>;
@@ -46,37 +47,37 @@ export interface CatsActions {
 }
 
 const state: CatsState = {
-  cats: undefined
+  cats: undefined,
 };
 
 const mutations: MutationTree<CatsState> & CatsMutations = {
   [CatsMutationTypes.SET_CATS]: (state: CatsState, cats: Array<Cat>) => {
     state.cats = cats;
-  }
+  },
 };
 
 const actions: ActionTree<CatsState, RootState> & CatsActions = {
   [CatsActionTypes.LOAD_CATS]: async ({
     commit,
     dispatch,
-    state
+    state,
   }: ActionContext<CatsState, RootState>) => {
     let cats: Array<Cat>;
 
     try {
       cats = await deps.catService.getCats();
     } catch (e) {
-      deps.errorHandler.handleBackendError(e);
+      deps.errorHandler.handleBackendError(e as AxiosError);
       deps.logger.logError(e);
       return;
     }
     commit(CatsMutationTypes.SET_CATS, cats);
-  }
+  },
 };
 
 export default {
   namespaced: true,
   state,
   mutations,
-  actions
+  actions,
 };

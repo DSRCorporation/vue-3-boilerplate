@@ -18,13 +18,16 @@ export function initContainer<HostElement>(app: App<HostElement>) {
   container.registerInstance(TYPES.Router, router);
   container.registerInstance(TYPES.i18n, i18n);
   container.register<IToaster>(TYPES.IToaster, {
-    useClass: Toaster
+    useClass: Toaster,
   });
+
+  // we can't update tsyring due to an error
+  // https://github.com/microsoft/tsyringe/issues/138
   container.register<ILogger>(TYPES.ILogger, {
-    useClass: Logger
+    useClass: Logger,
   });
   container.register<ValidationHelper>(TYPES.ValidationHelper, {
-    useClass: ValidationHelper
+    useClass: ValidationHelper,
   });
 
   if (window.Cypress) {

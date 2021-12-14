@@ -18,15 +18,20 @@ new Server({
       token: null
     });
     server.create<string, any, any>("user", {
+      email: "anastasia",
+      password: "1234",
+      token: null
+    });
+    server.create<string, any, any>("user", {
       email: "johnsnow@blackcastle.ws",
       password: "khaleesi",
       token: null
     });
 
-    for (let i=0; i<=5; i++) {
+    for (let i = 0; i <= 5; i++) {
       server.create<string, any, any>("cat", {
         id: i,
-        name: 'Kitty # '+ i,
+        name: "Kitty # " + i,
         breed: {
           id: i
         }
@@ -57,7 +62,7 @@ new Server({
       { timing: 100 }
     );
 
-    this.get("/v1/cats", (schema, request) => {
+    this.get("/v1/cats", (schema) => {
       return {
         // @ts-ignore
         data: schema.cats.all().models

@@ -13,7 +13,7 @@ import { RootState, StoreModules } from "@/store/types";
 import { CommonActionTypes } from "@/store/common";
 
 @Options({
-  components: { LoginForm }
+  components: { LoginForm },
 })
 export default class LoginView extends Vue {
   store: Store<RootState> = setup(() => useStore());
@@ -39,6 +39,7 @@ export default class LoginView extends Vue {
   justify-content: center;
   width: 100%;
   height: 100%;
+
   &__form {
     width: $gridLarge * 10;
   }

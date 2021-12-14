@@ -14,7 +14,7 @@
     "axios": "^0.24.0",
     "core-js": "^3.19.3",
     "reflect-metadata": "^0.1.13",
-    "tsyringe": "^4.6.0",
+    "tsyringe": "^4.3.0",
     "vee-validate": "^4.5.7",
     "vue": "^3.2.24",
     "vue-class-component": "^8.0.0-rc.1",

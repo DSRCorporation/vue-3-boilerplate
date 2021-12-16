@@ -14,15 +14,23 @@
 </template>
 
 <script lang="ts">
-import { Options, setup, Vue } from "vue-class-component";
+import { defineComponent } from "vue";
 import { useI18n } from "vue-i18n";
 import VButton from "@/components/VButton.vue";
 import SvgIcon from "@/components/SvgIcon.vue";
 
-@Options({ components: { VButton, SvgIcon } })
-export default class VHeader extends Vue {
-  i18n = setup(() => useI18n());
-}
+export default defineComponent({
+  name: "VHeader",
+  components: {
+    VButton,
+    SvgIcon,
+  },
+  setup() {
+    return {
+      i18n: useI18n(),
+    };
+  },
+});
 </script>
 
 <style scoped lang="scss">
@@ -35,7 +43,7 @@ export default class VHeader extends Vue {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12), 0px 2px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.24);
 
   &__logo {
     display: flex;

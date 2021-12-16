@@ -5,29 +5,35 @@
 </template>
 
 <script lang="ts">
-import { Options, setup, Vue } from "vue-class-component";
 import LoginForm from "../components/LoginForm.vue";
 import { Credentials } from "@/services/userService";
-import { Store, useStore } from "vuex";
-import { RootState, StoreModules } from "@/store/types";
+import { useStore } from "vuex";
+import { StoreModules } from "@/store/types";
 import { CommonActionTypes } from "@/store/common";
+import { defineComponent } from "vue";
 
-@Options({
-  components: { LoginForm },
-})
-export default class LoginView extends Vue {
-  store: Store<RootState> = setup(() => useStore());
+export default defineComponent({
+  name: "LoginView",
+  components: {
+    LoginForm,
+  },
+  data() {
+    return {
+      store: useStore(),
+    };
+  },
+  methods: {
+    async login(credentials: Credentials): Promise<void> {
+      this.$logger.logInfo("Initiate login!");
 
-  async login(credentials: Credentials) {
-    this.$logger.logInfo("Initiate login!");
-
-    //todo improve typings
-    await this.store.dispatch(
-      `${StoreModules.COMMON}/${CommonActionTypes.LOGIN}`,
-      credentials
-    );
-  }
-}
+      //todo improve typings
+      await this.store.dispatch(
+        `${StoreModules.COMMON}/${CommonActionTypes.LOGIN}`,
+        credentials
+      );
+    },
+  },
+});
 </script>
 
 <style scoped lang="scss">

@@ -2,7 +2,7 @@
   <article class="cats-view">
     <h3>{{ i18n.t("cats") }}</h3>
 
-    <list-renderer :items="catsStore.cats" thumbnail-width="25%">
+    <list-renderer :items="cats" thumbnail-width="25%">
       <template v-slot="{ item }">
         <cat-thumbnail :cat="item"></cat-thumbnail>
       </template>
@@ -11,35 +11,32 @@
 </template>
 
 <script lang="ts">
-import { Options, setup, Vue } from "vue-class-component";
 import { useStore } from "vuex";
 import { StoreModules } from "@/store/types";
 import { CatsActionTypes } from "@/store/cats";
 import CatThumbnail from "@/components/CatThumbnail.vue";
-import { computed } from "vue";
+import { computed, defineComponent } from "vue";
 import { useI18n } from "vue-i18n";
 import ListRenderer from "@/components/ListRenderer.vue";
 
-@Options({ components: { CatThumbnail, ListRenderer } })
-export default class CatsView extends Vue {
-  //todo vuex typings
-  catsStore = setup(() => {
+export default defineComponent({
+  name: "CatsView",
+  components: {
+    CatThumbnail,
+    ListRenderer,
+  },
+  setup() {
     const store = useStore();
+    store.dispatch(`${StoreModules.CATS}/${CatsActionTypes.LOAD_CATS}`);
+
+    let cats = computed(() => store.state.cats.cats);
 
     return {
-      loadCats() {
-        store.dispatch(`${StoreModules.CATS}/${CatsActionTypes.LOAD_CATS}`);
-      },
-      cats: computed(() => store.state.cats.cats),
+      i18n: useI18n(),
+      cats,
     };
-  });
-
-  i18n = setup(() => useI18n());
-
-  async created() {
-    await this.catsStore.loadCats();
-  }
-}
+  },
+});
 </script>
 
 <style scoped lang="scss">

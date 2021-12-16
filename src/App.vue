@@ -3,13 +3,13 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
 import axios from "axios";
 import { StoreModules } from "@/store/types";
 import { CommonActionTypes } from "@/store/common";
+import { defineComponent } from "vue";
 
-@Options({})
-export default class App extends Vue {
+export default defineComponent({
+  name: "App",
   async created() {
     axios.interceptors.request.use((config) => {
       const token = this.$store.state.common.token;
@@ -40,8 +40,8 @@ export default class App extends Vue {
     if (!token) {
       await this.$router.push({ name: "Login" });
     }
-  }
-}
+  },
+});
 </script>
 
 <style lang="scss">

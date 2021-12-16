@@ -11,25 +11,27 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
 import VThumbnail from "@/components/VThumbnail.vue";
-import { Cat } from "@/types/cats";
+import { defineComponent } from "vue";
 
-@Options({
+export default defineComponent({
+  name: "CatThumbnail",
   props: {
-    cat: Object,
+    cat: {
+      type: Object,
+      required: true,
+    },
   },
   components: {
     VThumbnail,
   },
-})
-export default class CatThumbnail extends Vue {
-  cat!: Cat;
-  //todo get it from the server
-  get imgPath() {
-    return `url(/cats/${this.cat.id % 6}.jpg)`;
-  }
-}
+  computed: {
+    imgPath() {
+      //todo get it from the server
+      return `url(/cats/${this.cat.id % 6}.jpg)`;
+    },
+  },
+});
 </script>
 
 <style scoped lang="scss">

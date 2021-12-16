@@ -9,8 +9,9 @@
       :name="name"
       @input="onInput($event)"
     />
-
-    {{ validator.errorMessage }}
+    <p v-if="this.validator.errorMessage">
+      {{ this.validator.errorMessage }}
+    </p>
   </label>
 </template>
 
@@ -53,6 +54,7 @@ export default defineComponent({
         ($event.target as HTMLInputElement).value
       );
       this.validator.handleChange($event);
+      debugger;
     },
   },
 });

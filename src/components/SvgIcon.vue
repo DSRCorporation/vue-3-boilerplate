@@ -5,16 +5,22 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
+import { defineComponent } from "vue";
 
-@Options({ props: { icon: String } })
-export default class SvgIcon extends Vue {
-  icon!: string;
-
-  get iconPath() {
-    return `/icons.svg#${this.icon}`;
-  }
-}
+export default defineComponent({
+  name: "SvgIcon",
+  props: {
+    icon: {
+      type: String,
+      required: true,
+    },
+  },
+  computed: {
+    iconPath() {
+      return `/icons.svg#${this.icon}`;
+    },
+  },
+});
 </script>
 
 <style scoped lang="scss">

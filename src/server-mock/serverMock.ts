@@ -50,7 +50,6 @@ new Server({
           email: attrs.email,
           password: attrs.password
         });
-
         if (!user) {
           return new Response(401, {}, { error: "INVALID_CREDS" });
         }

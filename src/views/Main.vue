@@ -6,34 +6,40 @@
 </template>
 
 <script lang="ts">
-import { Options, setup, Vue } from "vue-class-component";
-import VButton from "@/components/VButton.vue";
 import { useI18n } from "vue-i18n";
-import { Store, useStore } from "vuex";
-import { RootState, StoreModules } from "@/store/types";
+import { useStore } from "vuex";
+import { StoreModules } from "@/store/types";
 import { CommonActionTypes } from "@/store/common";
 import VHeader from "@/components/VHeader.vue";
+import { defineComponent } from "vue";
 
-@Options({
+export default defineComponent({
+  name: "VMain",
   components: {
-    VButton,
     VHeader,
   },
-})
-export default class Main extends Vue {
-  i18n = setup(() => useI18n());
-  store: Store<RootState> = setup(() => useStore());
+  data() {
+    return {
+      store: useStore(),
+    };
+  },
+  methods: {
+    async logout() {
+      // Example of usage services' plugin injection
+      this.$logger.logInfo("Initiate logout!");
 
-  async logout() {
-    // Example of usage services' plugin injection
-    this.$logger.logInfo("Initiate logout!");
-
-    //todo improve typings
-    await this.store.dispatch(
-      `${StoreModules.COMMON}/${CommonActionTypes.LOGOUT}`
-    );
-  }
-}
+      //todo improve typings
+      await this.store.dispatch(
+        `${StoreModules.COMMON}/${CommonActionTypes.LOGOUT}`
+      );
+    },
+  },
+  setup() {
+    return {
+      i18n: useI18n(),
+    };
+  },
+});
 </script>
 
 <style lang="scss" scoped>

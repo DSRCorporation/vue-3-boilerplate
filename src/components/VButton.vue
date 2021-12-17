@@ -5,9 +5,11 @@
 </template>
 
 <script lang="ts">
-import { Vue } from "vue-class-component";
+import { defineComponent } from "vue";
 
-export default class VButton extends Vue {}
+export default defineComponent({
+  name: "VButton",
+});
 </script>
 
 <style scoped lang="scss">
@@ -29,7 +31,7 @@ export default class VButton extends Vue {}
   letter-spacing: 0.05em;
 
   &:hover {
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.12);
   }
 
   &:active {

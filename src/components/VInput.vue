@@ -1,7 +1,6 @@
 <template>
   <label>
     {{ label }}
-
     <input
       class="input"
       :value="modelValue"
@@ -9,36 +8,54 @@
       :name="name"
       @input="onInput($event)"
     />
-
-    {{ validator.errorMessage }}
+    {{ this.errorMessage }}
   </label>
 </template>
 
 <script lang="ts">
-import { Options, Vue, setup } from "vue-class-component";
+import { defineComponent } from "vue";
 import { useField } from "vee-validate";
 
-@Options({
-  props: { label: String, modelValue: String, type: String, name: String },
-})
-export default class VInput extends Vue {
-  //todo types for $props?
-  /*eslint-disable*/
-  // @ts-ignore
-  validator = setup(() => useField(this.$props.name, undefined, {
-    // @ts-ignore
-    initialValue: this.$props.modelValue,
-    // @ts-ignore
-    label: this.$props.label
-  }))
-
-  /*eslint-enable*/
-
-  onInput($event: Event) {
-    this.$emit("update:modelValue", ($event.target as HTMLInputElement).value);
-    this.validator.handleChange($event);
-  }
-}
+export default defineComponent({
+  name: "VInput",
+  props: {
+    label: {
+      type: String,
+      required: true,
+    },
+    modelValue: {
+      type: String,
+      required: false,
+    },
+    type: {
+      type: String,
+      required: false,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+  },
+  setup(props) {
+    const { handleChange, errorMessage } = useField(props.name, undefined, {
+      initialValue: props.modelValue,
+      label: props.label,
+    });
+    return {
+      handleChange,
+      errorMessage,
+    };
+  },
+  methods: {
+    onInput($event: Event) {
+      this.$emit(
+        "update:modelValue",
+        ($event.target as HTMLInputElement).value
+      );
+      this.handleChange($event);
+    },
+  },
+});
 </script>
 
 <style scoped lang="scss">

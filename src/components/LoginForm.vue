@@ -38,31 +38,42 @@
 </template>
 
 <script lang="ts">
-import { Options, setup, Vue } from "vue-class-component";
+import { defineComponent } from "vue";
 import VButton from "@/components/VButton.vue";
 import VInput from "@/components/VInput.vue";
-import { Credentials } from "@/services/userService";
 import { useI18n } from "vue-i18n";
-import { Form as VeeForm, Field } from "vee-validate";
+import { Form as VeeForm } from "vee-validate";
 import SvgIcon from "@/components/SvgIcon.vue";
 import * as yup from "yup";
 
-@Options({
-  components: { VButton, VInput, VeeForm, Field, SvgIcon },
-})
-export default class LoginForm extends Vue {
-  credentials: Credentials = { email: "", password: "" };
-  i18n = setup(() => useI18n());
-
-  validation = yup.object().shape({
-    email: yup.string().required(),
-    password: yup.string().required().min(4),
-  });
-
-  submit() {
-    this.$emit("login", this.credentials);
-  }
-}
+export default defineComponent({
+  name: "LoginForm",
+  components: {
+    VButton,
+    SvgIcon,
+    VInput,
+    VeeForm,
+  },
+  setup() {
+    return {
+      i18n: useI18n(),
+    };
+  },
+  data() {
+    return {
+      credentials: { email: "", password: "" },
+      validation: yup.object().shape({
+        email: yup.string().required(),
+        password: yup.string().required().min(4),
+      }),
+    };
+  },
+  methods: {
+    submit() {
+      this.$emit("login", this.credentials);
+    },
+  },
+});
 </script>
 
 <style scoped lang="scss">

@@ -1,7 +1,6 @@
 <template>
   <label>
     {{ label }}
-
     <input
       class="input"
       :value="modelValue"
@@ -9,9 +8,7 @@
       :name="name"
       @input="onInput($event)"
     />
-    <p v-if="this.validator.errorMessage">
-      {{ this.validator.errorMessage }}
-    </p>
+    {{ this.errorMessage }}
   </label>
 </template>
 
@@ -40,11 +37,13 @@ export default defineComponent({
     },
   },
   setup(props) {
+    const { handleChange, errorMessage } = useField(props.name, undefined, {
+      initialValue: props.modelValue,
+      label: props.label,
+    });
     return {
-      validator: useField(props.name, undefined, {
-        initialValue: props.modelValue,
-        label: props.label,
-      }),
+      handleChange,
+      errorMessage,
     };
   },
   methods: {
@@ -53,8 +52,7 @@ export default defineComponent({
         "update:modelValue",
         ($event.target as HTMLInputElement).value
       );
-      this.validator.handleChange($event);
-      debugger;
+      this.handleChange($event);
     },
   },
 });

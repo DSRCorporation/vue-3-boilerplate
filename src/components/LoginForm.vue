@@ -19,6 +19,8 @@
         label="Email"
         name="email"
         v-model="credentials.email"
+        :server-error="serverErrors.email"
+        @update:modelValue="onInput"
       ></v-input>
 
       <v-input
@@ -27,6 +29,8 @@
         name="password"
         type="password"
         v-model="credentials.password"
+        :server-error="serverErrors.password"
+        @update:modelValue="onInput"
       ></v-input>
       <div class="login-form__buttons">
         <v-button type="submit" class="login-form__submit">{{
@@ -54,6 +58,11 @@ export default defineComponent({
     VInput,
     VeeForm,
   },
+  props: {
+    serverErrors: {
+      type: Object,
+    },
+  },
   setup() {
     return {
       i18n: useI18n(),
@@ -69,8 +78,12 @@ export default defineComponent({
     };
   },
   methods: {
-    submit() {
-      this.$emit("login", this.credentials);
+    async submit() {
+      await this.$emit("login", this.credentials);
+      console.log(`form: ${this.serverErrors}`);
+    },
+    onInput() {
+      this.$emit("input");
     },
   },
 });

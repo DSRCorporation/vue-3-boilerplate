@@ -48,10 +48,13 @@ new Server({
         // @ts-ignore
         const user = schema.users.findBy({
           email: attrs.email,
-          password: attrs.password
         });
         if (!user) {
-          return new Response(401, {}, { error: "INVALID_CREDS" });
+          return new Response(401, {}, { error: "INVALID_USERNAME" });
+        }
+
+        if (user.password !== attrs.password){
+          return new Response(401, {}, { error: "INVALID_PASSWORD" });
         }
 
         user.attrs.token = "str" + new Date().getTime();

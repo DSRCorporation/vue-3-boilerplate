@@ -1,6 +1,11 @@
 <template>
   <article class="login-view">
-    <login-form class="login-view__form" @login="login"></login-form>
+    <login-form
+      class="login-view__form"
+      :serverErrors="errors"
+      @login="login"
+      @input="onInput"
+    ></login-form>
   </article>
 </template>
 
@@ -11,6 +16,14 @@ import { useStore } from "vuex";
 import { StoreModules } from "@/store/types";
 import { CommonActionTypes } from "@/store/common";
 import { defineComponent } from "vue";
+import { container } from "tsyringe";
+import { ErrorHandler } from "@/services/errorHandler";
+
+const deps = {
+  get errorHandler() {
+    return container.resolve(ErrorHandler);
+  },
+};
 
 export default defineComponent({
   name: "LoginView",
@@ -18,8 +31,10 @@ export default defineComponent({
     LoginForm,
   },
   data() {
+    const errors = {};
     return {
       store: useStore(),
+      errors,
     };
   },
   methods: {
@@ -31,6 +46,12 @@ export default defineComponent({
         `${StoreModules.COMMON}/${CommonActionTypes.LOGIN}`,
         credentials
       );
+      this.errors = { ...deps.errorHandler.getServerErrors() };
+      console.log(this.errors);
+    },
+    onInput() {
+      deps.errorHandler.clearBackendError();
+      this.errors = { ...deps.errorHandler.getServerErrors() };
     },
   },
 });

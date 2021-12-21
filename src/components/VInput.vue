@@ -8,7 +8,7 @@
       :name="name"
       @input="onInput($event)"
     />
-    {{ this.errorMessage }}
+    {{ this.errorMessage || serverError }}
   </label>
 </template>
 
@@ -34,6 +34,9 @@ export default defineComponent({
     name: {
       type: String,
       required: true,
+    },
+    serverError: {
+      type: String,
     },
   },
   setup(props) {

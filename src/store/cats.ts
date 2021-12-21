@@ -7,7 +7,7 @@ import { CatService } from "@/services/catService";
 import { AugmentedActionContext, RootState } from "@/store/types";
 import { Cat } from "@/types/cats";
 import { ActionContext, ActionTree, MutationTree } from "vuex";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 const deps = {
   get catService() {
@@ -68,7 +68,7 @@ const actions: ActionTree<CatsState, RootState> & CatsActions = {
       cats = await deps.catService.getCats();
     } catch (e) {
       if (axios.isAxiosError(e)) {
-        deps.errorHandler.handleBackendError(e as AxiosError);
+        deps.errorHandler.handleBackendError(e);
       }
       deps.logger.logError(e);
       return;

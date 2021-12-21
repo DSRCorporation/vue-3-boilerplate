@@ -11,8 +11,9 @@ export const messages = {
       maxLength: "{field} can not be greater {limit} characters.",
     },
     error: {
-      INVALID_CREDS: "Incorrect username or password.",
       COMMON_ERR: "Something went wrong.",
+      INVALID_USERNAME: "Incorrect username.",
+      INVALID_PASSWORD: "Incorrect password.",
     },
   },
 };

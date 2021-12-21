@@ -46,7 +46,6 @@ Just copy content of this repo and use it as a skeleton. You are free to do any 
 	- Basic examples (i18-n, vuex useStore) :white_check_mark:
 	- Advanced examples :x:
 - Components
-	- [Vue class components](https://github.com/vuejs/vue-class-component) :white_check_mark:
 	- Render function based components examples :white_check_mark: (ListRenderer component)
 	- Types for *$props* in *setup* helper :x:
 - Localization
@@ -59,7 +58,7 @@ Just copy content of this repo and use it as a skeleton. You are free to do any 
 	- Checkbox/Radio :x:
 - Form validation/validation framework
     - Client-side form validation :white_check_mark:
-    - Show backend form errors :x:
+    - Show backend form errors :white_check_mark:
 - Common functionality
 	- Login form :white_check_mark:
 	- Auth framework (token) :white_check_mark: (partially done)

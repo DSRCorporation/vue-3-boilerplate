@@ -1,10 +1,13 @@
 <template>
-  <VeeForm v-slot="{ handleSubmit }" :validation-schema="validation">
+  <VeeForm
+    v-slot="{ handleSubmit, setFieldError }"
+    :validation-schema="validation"
+  >
     <form
       class="login-form"
       novalidate
       autocomplete="off"
-      @submit.prevent="handleSubmit($event, submit)"
+      @submit.prevent="handleSubmit($event, submit, setFieldError)"
     >
       <div class="login-form__logo">
         <svg-icon class="login-form__logo__icon" icon="cat-logo"></svg-icon>
@@ -19,9 +22,9 @@
         label="Email"
         name="email"
         v-model="credentials.email"
-        :server-error="serverErrors.email"
-        @update:modelValue="onInput"
-      ></v-input>
+      >
+        <VeeErrorMessage name="email" />
+      </v-input>
 
       <v-input
         class="login-form__input"
@@ -29,9 +32,9 @@
         name="password"
         type="password"
         v-model="credentials.password"
-        :server-error="serverErrors.password"
-        @update:modelValue="onInput"
-      ></v-input>
+      >
+        <VeeErrorMessage name="password" />
+      </v-input>
       <div class="login-form__buttons">
         <v-button type="submit" class="login-form__submit">{{
           i18n.t("login")
@@ -46,9 +49,10 @@ import { defineComponent } from "vue";
 import VButton from "@/components/VButton.vue";
 import VInput from "@/components/VInput.vue";
 import { useI18n } from "vue-i18n";
-import { Form as VeeForm } from "vee-validate";
+import { Form as VeeForm, ErrorMessage as VeeErrorMessage } from "vee-validate";
 import SvgIcon from "@/components/SvgIcon.vue";
 import * as yup from "yup";
+import { ServerError } from "@/types/serverError";
 
 export default defineComponent({
   name: "LoginForm",
@@ -57,6 +61,7 @@ export default defineComponent({
     SvgIcon,
     VInput,
     VeeForm,
+    VeeErrorMessage,
   },
   props: {
     serverErrors: {
@@ -75,15 +80,32 @@ export default defineComponent({
         email: yup.string().required(),
         password: yup.string().required().min(4),
       }),
+      setFieldError: (key: string, errors: ServerError) => {
+        // need get function from VeeForm component
+        return null;
+      },
     };
   },
-  methods: {
-    async submit() {
-      await this.$emit("login", this.credentials);
-      console.log(`form: ${this.serverErrors}`);
+  watch: {
+    serverErrors(newErrors) {
+      for (const key in newErrors) {
+        if (this.serverErrors && typeof this.serverErrors[key] !== "undefined")
+          this.setFieldError(key, this.serverErrors);
+      }
     },
-    onInput() {
-      this.$emit("input");
+  },
+  methods: {
+    async submit(values: any, actions: any) {
+      await this.$emit("login", this.credentials);
+      this.initSetFieldFunction(actions);
+    },
+    initSetFieldFunction(actions: any) {
+      if (this.setFieldError("", {}) === null) {
+        this.setFieldError = (key: string, errors: ServerError) => {
+          return actions.setFieldError(key, errors[`${key}`]);
+        };
+        debugger;
+      }
     },
   },
 });

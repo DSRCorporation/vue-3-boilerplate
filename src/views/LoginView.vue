@@ -4,7 +4,6 @@
       class="login-view__form"
       :serverErrors="errors"
       @login="login"
-      @input="onInput"
     ></login-form>
   </article>
 </template>
@@ -15,9 +14,10 @@ import { Credentials } from "@/services/userService";
 import { useStore } from "vuex";
 import { StoreModules } from "@/store/types";
 import { CommonActionTypes } from "@/store/common";
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
 import { container } from "tsyringe";
 import { ErrorHandler } from "@/services/errorHandler";
+import axios from "axios";
 
 const deps = {
   get errorHandler() {
@@ -30,28 +30,33 @@ export default defineComponent({
   components: {
     LoginForm,
   },
-  data() {
-    const errors = {};
+  setup() {
+    const store = useStore();
+    const errors = computed(() => store.state.common.serverErrors);
+
     return {
-      store: useStore(),
+      store,
       errors,
     };
   },
   methods: {
-    async login(credentials: Credentials): Promise<void> {
+    async login(
+      credentials: Credentials,
+      setFieldError: (key: string, value: string) => void
+    ): Promise<void> {
       this.$logger.logInfo("Initiate login!");
 
       //todo improve typings
-      await this.store.dispatch(
-        `${StoreModules.COMMON}/${CommonActionTypes.LOGIN}`,
-        credentials
-      );
-      this.errors = { ...deps.errorHandler.getServerErrors() };
-      console.log(this.errors);
-    },
-    onInput() {
-      deps.errorHandler.clearBackendError();
-      this.errors = { ...deps.errorHandler.getServerErrors() };
+      try {
+        await this.store.dispatch(
+          `${StoreModules.COMMON}/${CommonActionTypes.LOGIN}`,
+          credentials
+        );
+      } catch (e) {
+        if (axios.isAxiosError(e)) {
+          deps.errorHandler.handleBackendError(e, setFieldError);
+        }
+      }
     },
   },
 });

@@ -6,7 +6,6 @@ import { Router } from "vue-router";
 import { ErrorHandler } from "@/services/errorHandler";
 import { container } from "tsyringe";
 import { TYPES } from "@/services/helpers/containerTypes";
-import axios from "axios";
 
 const deps = {
   get userService() {
@@ -76,17 +75,12 @@ const actions: ActionTree<CommonState, RootState> & CommonActions = {
     let token: string;
     try {
       token = await deps.userService.login(payload);
+      commit(CommonMutationTypes.SET_TOKEN, token);
+      await deps.router.push({ name: "Main" });
     } catch (e) {
-      if (axios.isAxiosError(e)) {
-        if (e.response?.status === 401) {
-          deps.errorHandler.handleBackendError(e);
-        }
-      }
       deps.logger.logError(e);
-      return;
+      throw e;
     }
-    commit(CommonMutationTypes.SET_TOKEN, token);
-    await deps.router.push({ name: "Main" });
   },
 
   [CommonActionTypes.LOGOUT]: async ({

@@ -19,9 +19,9 @@
         label="Email"
         name="email"
         v-model="credentials.email"
-        :server-error="serverErrors.email"
-        @update:modelValue="onInput"
-      ></v-input>
+      >
+        <VeeErrorMessage name="email" />
+      </v-input>
 
       <v-input
         class="login-form__input"
@@ -29,9 +29,9 @@
         name="password"
         type="password"
         v-model="credentials.password"
-        :server-error="serverErrors.password"
-        @update:modelValue="onInput"
-      ></v-input>
+      >
+        <VeeErrorMessage name="password" />
+      </v-input>
       <div class="login-form__buttons">
         <v-button type="submit" class="login-form__submit">{{
           i18n.t("login")
@@ -46,7 +46,11 @@ import { defineComponent } from "vue";
 import VButton from "@/components/VButton.vue";
 import VInput from "@/components/VInput.vue";
 import { useI18n } from "vue-i18n";
-import { Form as VeeForm } from "vee-validate";
+import {
+  Form as VeeForm,
+  ErrorMessage as VeeErrorMessage,
+  SubmissionContext,
+} from "vee-validate";
 import SvgIcon from "@/components/SvgIcon.vue";
 import * as yup from "yup";
 
@@ -57,12 +61,14 @@ export default defineComponent({
     SvgIcon,
     VInput,
     VeeForm,
+    VeeErrorMessage,
   },
   props: {
     serverErrors: {
       type: Object,
     },
   },
+  emits: ["login"],
   setup() {
     return {
       i18n: useI18n(),
@@ -78,12 +84,8 @@ export default defineComponent({
     };
   },
   methods: {
-    async submit() {
-      await this.$emit("login", this.credentials);
-      console.log(`form: ${this.serverErrors}`);
-    },
-    onInput() {
-      this.$emit("input");
+    submit<H, C extends SubmissionContext>(value: H, actions: C) {
+      this.$emit("login", this.credentials, actions.setFieldError);
     },
   },
 });

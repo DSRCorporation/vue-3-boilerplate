@@ -50,11 +50,28 @@ new Server({
           email: attrs.email,
         });
         if (!user) {
-          return new Response(401, {}, { error: "INVALID_USERNAME" });
+          return new Response(401, {}, {
+            "error": "INVALID_EMAIL",
+            "message": [
+              {
+                "property": "email",
+                "constraints": {
+                "isExist": "Incorrect email"
+              }
+            }]
+          });
         }
 
         if (user.password !== attrs.password){
-          return new Response(401, {}, { error: "INVALID_PASSWORD" });
+          return new Response(401, {}, {
+            "error": "INVALID_PASSWORD",
+            "message": [{
+              "property": "password",
+              "constraints": {
+              "correctPassword": "Incorrect password"
+            }
+            }]
+          });
         }
 
         user.attrs.token = "str" + new Date().getTime();

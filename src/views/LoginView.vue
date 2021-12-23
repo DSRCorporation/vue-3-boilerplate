@@ -15,6 +15,15 @@ import { useStore } from "vuex";
 import { StoreModules } from "@/store/types";
 import { CommonActionTypes } from "@/store/common";
 import { computed, defineComponent } from "vue";
+import { container } from "tsyringe";
+import { ErrorHandler } from "@/services/errorHandler";
+import axios from "axios";
+
+const deps = {
+  get errorHandler() {
+    return container.resolve(ErrorHandler);
+  },
+};
 
 export default defineComponent({
   name: "LoginView",
@@ -31,14 +40,23 @@ export default defineComponent({
     };
   },
   methods: {
-    async login(credentials: Credentials): Promise<void> {
+    async login(
+      credentials: Credentials,
+      setFieldError: (key: string, value: string) => void
+    ): Promise<void> {
       this.$logger.logInfo("Initiate login!");
 
       //todo improve typings
-      await this.store.dispatch(
-        `${StoreModules.COMMON}/${CommonActionTypes.LOGIN}`,
-        credentials
-      );
+      try {
+        await this.store.dispatch(
+          `${StoreModules.COMMON}/${CommonActionTypes.LOGIN}`,
+          credentials
+        );
+      } catch (e) {
+        if (axios.isAxiosError(e)) {
+          deps.errorHandler.handleBackendError(e, setFieldError);
+        }
+      }
     },
   },
 });

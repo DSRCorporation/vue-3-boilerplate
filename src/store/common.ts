@@ -6,8 +6,6 @@ import { Router } from "vue-router";
 import { ErrorHandler } from "@/services/errorHandler";
 import { container } from "tsyringe";
 import { TYPES } from "@/services/helpers/containerTypes";
-import axios from "axios";
-import { ServerError } from "@/types/serverError";
 
 const deps = {
   get userService() {
@@ -26,20 +24,14 @@ const deps = {
 
 export interface CommonState {
   token?: string;
-  serverErrors: ServerError;
 }
 
 export enum CommonMutationTypes {
   SET_TOKEN = "setToken",
-  SET_ERRORS = "setErrors",
 }
 
 export interface CommonMutations {
   [CommonMutationTypes.SET_TOKEN](state: CommonState, payload: string): void;
-  [CommonMutationTypes.SET_ERRORS](
-    state: CommonState,
-    payload: ServerError
-  ): void;
 }
 
 export enum CommonActionTypes {
@@ -59,7 +51,6 @@ export interface CommonActions {
 
 const state = {
   token: localStorage.getItem("token"),
-  serverErrors: {},
 };
 
 const mutations: MutationTree<CommonState> & CommonMutations = {
@@ -74,12 +65,6 @@ const mutations: MutationTree<CommonState> & CommonMutations = {
     }
     state.token = token;
   },
-  [CommonMutationTypes.SET_ERRORS]: (
-    state: CommonState,
-    errors: ServerError
-  ) => {
-    state.serverErrors = { ...errors };
-  },
 };
 
 const actions: ActionTree<CommonState, RootState> & CommonActions = {
@@ -90,23 +75,12 @@ const actions: ActionTree<CommonState, RootState> & CommonActions = {
     let token: string;
     try {
       token = await deps.userService.login(payload);
-      commit(CommonMutationTypes.SET_ERRORS, {});
+      commit(CommonMutationTypes.SET_TOKEN, token);
+      await deps.router.push({ name: "Main" });
     } catch (e) {
-      if (axios.isAxiosError(e)) {
-        if (e.response?.status === 401) {
-          commit(
-            CommonMutationTypes.SET_ERRORS,
-            deps.errorHandler.handleBackendError(e)
-          );
-        } else {
-          deps.errorHandler.handleError(e);
-        }
-      }
       deps.logger.logError(e);
-      return;
+      throw e;
     }
-    commit(CommonMutationTypes.SET_TOKEN, token);
-    await deps.router.push({ name: "Main" });
   },
 
   [CommonActionTypes.LOGOUT]: async ({

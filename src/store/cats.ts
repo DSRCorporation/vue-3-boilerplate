@@ -68,7 +68,7 @@ const actions: ActionTree<CatsState, RootState> & CatsActions = {
       cats = await deps.catService.getCats();
     } catch (e) {
       if (axios.isAxiosError(e)) {
-        deps.errorHandler.handleError(e);
+        deps.errorHandler.handleBackendError(e);
       }
       deps.logger.logError(e);
       return;

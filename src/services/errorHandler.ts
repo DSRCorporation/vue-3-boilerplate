@@ -12,22 +12,29 @@ export class ErrorHandler {
     @inject(TYPES.IToaster) private toaster: IToaster
   ) {}
 
-  handleError(e: Error) {
-    this.toaster.error(
-      this.i18n.global.t(`error.${e.message || "COMMON_ERR"}`, e.message)
-    );
-  }
-
-  handleBackendError(e: AxiosError): ServerError {
+  handleBackendError(
+    e: AxiosError,
+    setFieldError?: (key: string, value: string) => void
+  ): ServerError {
     const errors: ServerError = {};
     e.response?.data.message.forEach((error: ServerErrorMessage) => {
       if (error.property) {
         errors[`${error.property}`] =
           error.constraints[Object.keys(error.constraints)[0]];
       } else {
-        this.toaster.error(this.i18n.global.t(error.constraints[0]));
+        this.toaster.error(
+          this.i18n.global.t(
+            `error.${e.response?.data.error || "COMMON_ERR"}`,
+            error.constraints
+          )
+        );
       }
     });
+    if (setFieldError) {
+      for (const key in errors) {
+        setFieldError(key, errors[key]);
+      }
+    }
     return errors;
   }
 }

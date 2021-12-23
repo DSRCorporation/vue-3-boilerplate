@@ -1,13 +1,10 @@
 <template>
-  <VeeForm
-    v-slot="{ handleSubmit, setFieldError }"
-    :validation-schema="validation"
-  >
+  <VeeForm v-slot="{ handleSubmit }" :validation-schema="validation">
     <form
       class="login-form"
       novalidate
       autocomplete="off"
-      @submit.prevent="handleSubmit($event, submit, setFieldError)"
+      @submit.prevent="handleSubmit($event, submit)"
     >
       <div class="login-form__logo">
         <svg-icon class="login-form__logo__icon" icon="cat-logo"></svg-icon>
@@ -49,10 +46,13 @@ import { defineComponent } from "vue";
 import VButton from "@/components/VButton.vue";
 import VInput from "@/components/VInput.vue";
 import { useI18n } from "vue-i18n";
-import { Form as VeeForm, ErrorMessage as VeeErrorMessage } from "vee-validate";
+import {
+  Form as VeeForm,
+  ErrorMessage as VeeErrorMessage,
+  SubmissionContext,
+} from "vee-validate";
 import SvgIcon from "@/components/SvgIcon.vue";
 import * as yup from "yup";
-import { ServerError } from "@/types/serverError";
 
 export default defineComponent({
   name: "LoginForm",
@@ -68,6 +68,7 @@ export default defineComponent({
       type: Object,
     },
   },
+  emits: ["login"],
   setup() {
     return {
       i18n: useI18n(),
@@ -80,32 +81,11 @@ export default defineComponent({
         email: yup.string().required(),
         password: yup.string().required().min(4),
       }),
-      setFieldError: (key: string, errors: ServerError) => {
-        // need get function from VeeForm component
-        return null;
-      },
     };
   },
-  watch: {
-    serverErrors(newErrors) {
-      for (const key in newErrors) {
-        if (this.serverErrors && typeof this.serverErrors[key] !== "undefined")
-          this.setFieldError(key, this.serverErrors);
-      }
-    },
-  },
   methods: {
-    async submit(values: any, actions: any) {
-      await this.$emit("login", this.credentials);
-      this.initSetFieldFunction(actions);
-    },
-    initSetFieldFunction(actions: any) {
-      if (this.setFieldError("", {}) === null) {
-        this.setFieldError = (key: string, errors: ServerError) => {
-          return actions.setFieldError(key, errors[`${key}`]);
-        };
-        debugger;
-      }
+    submit<H, C extends SubmissionContext>(value: H, actions: C) {
+      this.$emit("login", this.credentials, actions.setFieldError);
     },
   },
 });

@@ -1,34 +1,34 @@
 <template>
-  <svg class="svg-icon">
-    <use :xlink:href="iconPath"></use>
-  </svg>
+  <span class="avatar">
+    {{ this.name[0].toUpperCase() }}
+  </span>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "SvgIcon",
+  name: "user-avatar",
   props: {
-    icon: {
+    name: {
       type: String,
       required: true,
-    },
-  },
-  computed: {
-    iconPath() {
-      return `/icons.svg#${this.icon}`;
     },
   },
 });
 </script>
 
 <style scoped lang="scss">
-@import "../scss/constants";
+@import "src/scss/constants";
 
-//todo introduce different icon sizes
-.svg-icon {
+.avatar {
   width: calc(1.5 * var(--space-unit-base));
   height: calc(1.5 * var(--space-unit-base));
+  border-radius: 50%;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  color: var(--text-light-color);
 }
 </style>

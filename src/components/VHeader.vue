@@ -1,14 +1,15 @@
 <template>
   <header class="header">
     <div class="header__logo">
-      <svg-icon class="header__logo__icon" icon="cat-logo"></svg-icon>
-      <span class="header__logo__text">
-        {{ i18n.t("crud") }} <br />
-        {{ i18n.t("cats") }}
-      </span>
+      <img class="header__logo__icon" src="/logo.svg" />
     </div>
-    <v-button @click="$emit('logout', $event)" class="header__logout">
-      {{ i18n.t("logout") }}
+    <v-button
+      @click="$emit('logout', $event)"
+      v-if="isAuthenticated"
+      class="button--wrapper"
+    >
+      <!--todo name is stub-->
+      <user-avatar name="A"></user-avatar>
     </v-button>
   </header>
 </template>
@@ -17,14 +18,22 @@
 import { defineComponent } from "vue";
 import { useI18n } from "vue-i18n";
 import VButton from "@/components/VButton.vue";
-import SvgIcon from "@/components/SvgIcon.vue";
+import UserAvatar from "@/components/user/UserAvatar.vue";
+import { createNamespacedHelpers } from "vuex";
+import { StoreModules } from "@/store/types";
+import { CommonState } from "@/store/common/types";
+
+const { mapState } = createNamespacedHelpers(StoreModules.COMMON);
 
 export default defineComponent({
   name: "VHeader",
   components: {
+    UserAvatar,
     VButton,
-    SvgIcon,
   },
+  computed: mapState<CommonState>({
+    isAuthenticated: (state: CommonState) => !!state.token,
+  }),
   setup() {
     return {
       i18n: useI18n(),
@@ -38,26 +47,18 @@ export default defineComponent({
 @import "../scss/typography";
 
 .header {
-  padding: 0 $gridNormal;
-  background-color: $backgroundLightColor;
-  display: flex;
+  padding: var(--space-sm) var(--space-xl);
+  background-color: var(--background-light-color);
+  display: grid;
+  grid-auto-flow: column;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.24);
 
   &__logo {
-    display: flex;
-    align-items: center;
-    padding: $gridSmall 0;
+    display: grid;
     &__icon {
-      height: $gridNormal * 2;
-      width: $gridSmall * 3;
-      margin-right: $gridSmall;
-    }
-
-    &__text {
-      @include text-normal;
-      text-transform: uppercase;
+      height: calc(1.5 * var(--space-unit-base));
+      margin-right: var(--space-md);
     }
   }
 }

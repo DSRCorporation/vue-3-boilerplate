@@ -42,7 +42,7 @@
     "@vue/test-utils": "^2.0.0-rc.4",
     "cypress": "^9.1.1",
     "cypress-localstorage-commands": "^1.4.3",
-    "eslint": "^8.4.1",
+    "eslint": "^7.32.0",
     "eslint-plugin-prettier": "^3.4.1",
     "eslint-plugin-vue": "^8.2.0",
     "lint-staged": "^9.5.0",

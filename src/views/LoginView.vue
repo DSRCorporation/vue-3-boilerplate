@@ -1,10 +1,7 @@
 <template>
   <article class="login-view">
-    <login-form
-      class="login-view__form"
-      :serverErrors="errors"
-      @login="login"
-    ></login-form>
+    <v-header></v-header>
+    <login-form class="login-view__form" @login="login"></login-form>
   </article>
 </template>
 
@@ -13,11 +10,13 @@ import LoginForm from "../components/LoginForm.vue";
 import { Credentials } from "@/services/userService";
 import { useStore } from "vuex";
 import { StoreModules } from "@/store/types";
-import { CommonActionTypes } from "@/store/common";
-import { computed, defineComponent } from "vue";
+import { CommonActionTypes } from "@/store/common/types";
+import { defineComponent } from "vue";
 import { container } from "tsyringe";
 import { ErrorHandler } from "@/services/errorHandler";
 import axios from "axios";
+import VHeader from "@/components/VHeader.vue";
+import { STORE_KEY } from "@/store";
 
 const deps = {
   get errorHandler() {
@@ -29,14 +28,13 @@ export default defineComponent({
   name: "LoginView",
   components: {
     LoginForm,
+    VHeader,
   },
   setup() {
-    const store = useStore();
-    const errors = computed(() => store.state.common.serverErrors);
+    const store = useStore(STORE_KEY);
 
     return {
       store,
-      errors,
     };
   },
   methods: {
@@ -64,16 +62,35 @@ export default defineComponent({
 
 <style scoped lang="scss">
 @import "../scss/constants";
+@import "../scss/breakpoints";
 
 .login-view {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-rows: auto 1fr;
   width: 100%;
   height: 100%;
 
   &__form {
-    width: $gridLarge * 10;
+    width: calc(var(--space-unit-base) * 25);
+    align-self: center;
+    justify-self: center;
+  }
+}
+
+@include breakpoint(md) {
+  .login-view {
+    &__form {
+      width: calc(var(--space-unit-base) * 22);
+    }
+  }
+}
+
+@include breakpoint(xs) {
+  .login-view {
+    &__form {
+      width: 100%;
+      padding: 0 var(--space-xxxxl);
+    }
   }
 }
 </style>

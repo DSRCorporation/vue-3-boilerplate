@@ -5,7 +5,6 @@
         :style="{ 'background-image': imgPath }"
         class="cat-thumbnail__photo"
       ></div>
-      <h3 class="cat-thumbnail__name">{{ cat.name }}</h3>
     </v-thumbnail>
   </div>
 </template>
@@ -41,13 +40,6 @@ export default defineComponent({
 .cat-thumbnail {
   cursor: pointer;
   user-select: none;
-
-  &__name {
-    position: absolute;
-    left: $gridSmall;
-    bottom: $gridSmall;
-    color: $backgroundLightColor;
-  }
 
   &__photo {
     width: 100%;

@@ -1,7 +1,7 @@
 import "reflect-metadata";
 
 import router from "./router";
-import store from "./store";
+import store, { STORE_KEY } from "./store";
 import { createApp } from "vue";
 import App from "./App.vue";
 import "./server-mock/serverMock";
@@ -25,14 +25,15 @@ container
   .resolve<ValidationHelper>(TYPES.ValidationHelper)
   .defineValidationRules();
 
+// TODO replace with composition api?
 // Step 4: Installing required plugins
 app
   .use(router)
-  .use(store)
+  .use(store, STORE_KEY)
   // Injection DI Services into Vue as plugins (this part can be removed if decorative approach is preferable for you)
   .use(
     serviceInjectionPlugin(
-      new Map<string, InjectionToken<any>>([
+      new Map<string, InjectionToken>([
         ["$logger", TYPES.ILogger],
         ["$errorHandler", ErrorHandler],
         ["$appConfig", AppConfig],

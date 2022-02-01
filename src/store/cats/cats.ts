@@ -4,10 +4,18 @@ import { TYPES } from "@/services/helpers/containerTypes";
 import { Logger } from "@/services/logger";
 import { ErrorHandler } from "@/services/errorHandler";
 import { CatService } from "@/services/catService";
-import { AugmentedActionContext, RootState } from "@/store/types";
+import { RootState } from "@/store/types";
 import { Cat } from "@/types/cats";
-import { ActionContext, ActionTree, MutationTree } from "vuex";
+import { ActionTree, MutationTree } from "vuex";
 import axios from "axios";
+import {
+  CatsActionContext,
+  CatsActions,
+  CatsActionTypes,
+  CatsMutations,
+  CatsMutationTypes,
+  CatsState,
+} from "@/store/cats/types";
 
 const deps = {
   get catService() {
@@ -24,28 +32,6 @@ const deps = {
   },
 };
 
-export interface CatsState {
-  cats?: Array<Cat>;
-}
-
-export enum CatsMutationTypes {
-  SET_CATS = "setCats",
-}
-
-export interface CatsMutations {
-  [CatsMutationTypes.SET_CATS](state: CatsState, payload: Array<Cat>): void;
-}
-
-export enum CatsActionTypes {
-  LOAD_CATS = "loadCats",
-}
-
-type CatsActionContext = AugmentedActionContext<CatsMutations, CatsState>;
-
-export interface CatsActions {
-  [CatsActionTypes.LOAD_CATS](context: CatsActionContext): Promise<void>;
-}
-
 const state: CatsState = {
   cats: undefined,
 };
@@ -57,11 +43,7 @@ const mutations: MutationTree<CatsState> & CatsMutations = {
 };
 
 const actions: ActionTree<CatsState, RootState> & CatsActions = {
-  [CatsActionTypes.LOAD_CATS]: async ({
-    commit,
-    dispatch,
-    state,
-  }: ActionContext<CatsState, RootState>) => {
+  [CatsActionTypes.LOAD_CATS]: async ({ commit }: CatsActionContext) => {
     let cats: Array<Cat>;
 
     try {

@@ -18,7 +18,7 @@ export default defineComponent({
 .thumbnail {
   height: 0;
   // 9x16
-  padding-top: 56.25%;
+  padding-top: var(--aspect-ratio, 56.25%);
   position: relative;
 
   &__content {

@@ -2,18 +2,18 @@ import { singleton } from "tsyringe";
 
 export interface Log {
   level: "info" | "error" | "warn";
-  message: Array<any>;
+  message: Array<unknown>;
 }
 
 export interface ILogger {
   messages: Array<Log>;
-  logInfo: (...args: Array<any>) => void;
-  logError: (...args: Array<any>) => void;
-  logWarn: (...args: Array<any>) => void;
+  logInfo: (...args: Array<unknown>) => void;
+  logError: (...args: Array<unknown>) => void;
+  logWarn: (...args: Array<unknown>) => void;
 }
 
-function formatMessage(args: Array<any>) {
-  return args.reduce((current: string, value: any) => {
+function formatMessage(args: Array<unknown>) {
+  return args.reduce((current: string, value: unknown) => {
     if (typeof value === "string") {
       return current + " " + value;
     }
@@ -28,7 +28,7 @@ function formatMessage(args: Array<any>) {
 
 export function logToConsole(
   log: Log,
-  messageFormatter?: (args: Array<any>) => string
+  messageFormatter: (args: Array<unknown>) => string = formatMessage
 ) {
   switch (log.level) {
     case "info":
@@ -60,12 +60,12 @@ export class Logger implements ILogger {
   constructor(
     private logger: (
       log: Log,
-      messageFormatter?: (args: Array<any>) => string
+      messageFormatter?: (args: Array<unknown>) => string
     ) => void = logToConsole,
-    private messageFormatter?: (args: Array<any>) => string
+    private messageFormatter?: (args: Array<unknown>) => string
   ) {}
 
-  public logInfo(...args: Array<any>) {
+  public logInfo(...args: Array<unknown>) {
     this.logger(
       {
         level: "info",
@@ -75,7 +75,7 @@ export class Logger implements ILogger {
     );
   }
 
-  public logError(...args: Array<any>) {
+  public logError(...args: Array<unknown>) {
     this.logger(
       {
         level: "error",
@@ -85,7 +85,7 @@ export class Logger implements ILogger {
     );
   }
 
-  public logWarn(...args: Array<any>) {
+  public logWarn(...args: Array<unknown>) {
     this.logger(
       {
         level: "warn",

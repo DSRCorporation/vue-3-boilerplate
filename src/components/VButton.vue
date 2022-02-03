@@ -17,18 +17,29 @@ export default defineComponent({
 @import "src/scss/typography";
 
 .button {
-  background: $primaryColor;
-  border-radius: 4px;
-  color: $textLightColor;
-  @include text-normal;
-  font-weight: $fontWeightMedium;
-  padding: $gridSmall $gridNormal;
+  background: var(--primary-color);
+  border-radius: var(--border-radius-md);
+  color: var(--text-light-color);
+  @include font-callout();
+  padding: var(--btn-padding-left, var(--space-xs))
+    var(--btn-padding-top, var(--space-md));
   border: none;
-  text-transform: uppercase;
-  display: inline-block;
+  display: grid;
   cursor: pointer;
   text-align: center;
   letter-spacing: 0.05em;
+
+  &--icon {
+    padding: var(--space-sm);
+  }
+
+  &--wrapper.button {
+    padding: 0;
+    background-color: transparent;
+    &:hover {
+      box-shadow: none;
+    }
+  }
 
   &:hover {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.12);

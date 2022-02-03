@@ -6,6 +6,14 @@ import { Router } from "vue-router";
 import { ErrorHandler } from "@/services/errorHandler";
 import { container } from "tsyringe";
 import { TYPES } from "@/services/helpers/containerTypes";
+import {
+  CommonActionContext,
+  CommonActions,
+  CommonActionTypes,
+  CommonMutations,
+  CommonMutationTypes,
+  CommonState,
+} from "@/store/common/types";
 
 const deps = {
   get userService() {
@@ -21,33 +29,6 @@ const deps = {
     return container.resolve(ErrorHandler);
   },
 };
-
-export interface CommonState {
-  token?: string;
-}
-
-export enum CommonMutationTypes {
-  SET_TOKEN = "setToken",
-}
-
-export interface CommonMutations {
-  [CommonMutationTypes.SET_TOKEN](state: CommonState, payload: string): void;
-}
-
-export enum CommonActionTypes {
-  LOGIN = "login",
-  LOGOUT = "logout",
-}
-
-type CommonActionContext = AugmentedActionContext<CommonMutations, CommonState>;
-
-export interface CommonActions {
-  [CommonActionTypes.LOGIN](
-    context: CommonActionContext,
-    payload: Credentials
-  ): Promise<void>;
-  [CommonActionTypes.LOGOUT](context: CommonActionContext): Promise<void>;
-}
 
 const state = {
   token: localStorage.getItem("token"),
@@ -69,7 +50,7 @@ const mutations: MutationTree<CommonState> & CommonMutations = {
 
 const actions: ActionTree<CommonState, RootState> & CommonActions = {
   [CommonActionTypes.LOGIN]: async (
-    { commit, dispatch, state }: ActionContext<CommonState, RootState>,
+    { commit }: CommonActionContext,
     payload: Credentials
   ) => {
     let token: string;
@@ -83,10 +64,8 @@ const actions: ActionTree<CommonState, RootState> & CommonActions = {
     }
   },
 
-  [CommonActionTypes.LOGOUT]: async ({
-    commit,
-  }: ActionContext<CommonState, RootState>) => {
-    commit("setToken", undefined);
+  [CommonActionTypes.LOGOUT]: async ({ commit }: CommonActionContext) => {
+    commit(CommonMutationTypes.SET_TOKEN, undefined);
     await deps.router.push({ name: "Login" });
   },
 };

@@ -1,5 +1,6 @@
-import { CommonState } from "@/store/common";
+import { CommonState } from "@/store/common/types";
 import { ActionContext } from "vuex";
+import { CatsState } from "@/store/cats/types";
 
 export enum StoreModules {
   COMMON = "common",
@@ -9,7 +10,7 @@ export enum StoreModules {
 //todo typings for dispatch, commit, getter?
 export interface RootState {
   [StoreModules.COMMON]: CommonState;
-  vueGlobalProperties?: Record<string, any>;
+  [StoreModules.CATS]: CatsState;
 }
 
 export interface AugmentedActionContext<

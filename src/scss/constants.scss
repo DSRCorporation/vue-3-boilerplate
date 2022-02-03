@@ -1,37 +1,58 @@
-$gridBase: 4px;
-$gridSmall: 8px;
-$gridNormal: 16px;
-$gridBig: 20px;
-$gridLarge: 40px;
+@import "breakpoints";
 
-//colors
-$cornFlower: #546de5;
-$flamingoPink: #f78fb3;
-$biscay: #303952;
+:root {
+  // not scalable to screen size
+  --space-unit-base: 1rem;
+  // scalable to screen size
+  --space-unit: var(--space-unit-base);
+}
 
-$primaryColor: #1290A1;
-$backgroundLightColor: #FFFFFF;
-$backgroundColor: #E5E5E5;
-$textColor: #000000;
-$textLightColor: #FFFFFF;
-$borderColor: #CCCCCC;
+@include breakpoint(md) {
+  :root {
+    --space-unit: calc(0.75 * var(--space-unit-base));
+  }
+}
 
-//font sizes
-$fontSizeSmall: 12px;
-$fontSizeNormal: 14px;
-$fontSizeBig: 16px;
-$fontSizeLarge: 32px;
+@include breakpoint(xs) {
+  :root {
+    --space-unit: calc(0.5 * var(--space-unit-base));
+  }
+}
 
-//line heights
-$lineHeightSmall: 16px;
-$lineHeightNormal: 20px;
-$lineHeightLarge: 40px;
+:root, * {
+  //GRID
+  --space-xxxxs: calc(0.125 * var(--space-unit));
+  --space-xxxs: calc(0.25 * var(--space-unit));
+  --space-xxs: calc(0.375 * var(--space-unit));
+  --space-xs: calc(0.5 * var(--space-unit));
+  --space-sm: calc(0.75 * var(--space-unit));
+  --space-md: calc(1 * var(--space-unit));
+  --space-lg: calc(1.25 * var(--space-unit));
+  --space-xl: calc(1.5 * var(--space-unit));
+  --space-xxl: calc(2 * var(--space-unit));
+  --space-xxxl: calc(2.5 * var(--space-unit));
+  --space-xxxxl: calc(3 * var(--space-unit));
+  --space-xxxxxl: calc(4.5 * var(--space-unit));
+  --space-xxxxxxl: calc(6 * var(--space-unit));
+  --space-xxxxxxxl: calc(7.5 * var(--space-unit));
 
-//font weights
-$fontWeightNormal: 400;
-$fontWeightMedium: 500;
+  --font-family: Roboto;
 
-//borders
-$borderSmall: 1px;
+  // COLORS
+  --background-color: #F4F4F5;
+  --primary-color: #2284E5;
+  --background-light-color: #FFFFFF;
+  --text-color: #000000;
+  --text-light-color: #FFFFFF;
+  --border-color: #CCCCCC;
 
-$fontFamily: Roboto;
+  //borders
+  --border-xs: 1px;
+
+  //border radius
+  --border-radius-md: 4px;
+  --border-radius-lg: 8px;
+
+  //box shadows
+  --box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.16), 0px 1px 2px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.24);
+}

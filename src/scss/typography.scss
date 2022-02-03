@@ -1,20 +1,190 @@
 @import "constants";
 
-@mixin text-big {
-  font-size: $fontSizeBig;
-  font-weight: $fontWeightMedium;
-  line-height: $lineHeightNormal;
+:root {
+  //FONT SIZE
+  --font-size-large-title: 34px;
+  --font-size-title-1: 28px;
+  --font-size-title-2: 24px;
+  --font-size-title-3: 20px;
+  --font-size-headline: 17px;
+  --font-size-body: 17px;
+  --font-size-callout: 16px;
+  --font-size-subheadline: 15px;
+  --font-size-footnote: 13px;
+  --font-size-caption-1: 12px;
+  --font-size-caption-2: 11px;
+
+  //FONT WEIGHT
+  --font-weight-large-title: 900;
+  --font-weight-title-1: 800;
+  --font-weight-title-2: 700;
+  --font-weight-title-3: 600;
+  --font-weight-headline: 500;
+  --font-weight-body: 400;
+  --font-weight-callout: 600;
+  --font-weight-subheadline: 500;
+  --font-weight-footnote: 400;
+  --font-weight-caption-1: 400;
+  --font-weight-caption-2: 400;
+
+  //LINE HEIGHT
+  --line-height-large-title: calc(2.5 * var(--space-unit-base));
+  --line-height-title-1: calc(2 * var(--space-unit-base));
+  --line-height-title-2: calc(2 * var(--space-unit-base));
+  --line-height-title-3: calc(2 * var(--space-unit-base));
+  --line-height-headline: calc(1.5 * var(--space-unit-base));
+  --line-height-body: calc(1.5 * var(--space-unit-base));
+  --line-height-callout: calc(1.5 * var(--space-unit-base));
+  --line-height-subheadline: calc(1.25 * var(--space-unit-base));
+  --line-height-footnote: var(--space-unit-base);
+  --line-height-caption-1: var(--space-unit-base);
+  --line-height-caption-2: var(--space-unit-base);
 }
 
-@mixin text-small {
-  font-size: $fontSizeSmall;
-  font-weight: $fontWeightMedium;
-  line-height: $lineHeightSmall;
+@include breakpoint(md) {
+  :root {
+    --font-size-large-title: 28px;
+    --font-size-title-1: 24px;
+    --font-size-title-2: 20px;
+    --font-size-title-3: 17px;
+    --font-size-headline: 14px;
+    --font-size-body: 14px;
+    --font-size-subheadline: 13px;
+    --font-size-footnote: 13px;
+    --font-size-callout: 13px;
+    --font-size-caption-1: 12px;
+    --font-size-caption-2: 11px;
+
+    --font-weight-large-title: 900;
+    --font-weight-title-1: 800;
+    --font-weight-title-2: 700;
+    --font-weight-title-3: 600;
+    --font-weight-headline: 500;
+    --font-weight-body: 400;
+    --font-weight-subheadline: 500;
+    --font-weight-footnote: 400;
+    --font-weight-callout: 500;
+    --font-weight-caption-1: 400;
+    --font-weight-caption-2: 400;
+
+    --line-height-large-title: calc(2 * var(--space-unit-base));
+    --line-height-title-1: calc(1.75 * var(--space-unit-base));
+    --line-height-title-2: calc(1.75 * var(--space-unit-base));
+    --line-height-title-3: calc(1.5 * var(--space-unit-base));
+    --line-height-headline: calc(1.25 * var(--space-unit-base));
+    --line-height-body: calc(1.5 * var(--space-unit-base));
+    --line-height-subheadline: var(--space-unit-base);
+    --line-height-footnote: var(--space-unit-base);
+    --line-height-callout: calc(1.25 * var(--space-unit-base));
+    --line-height-caption-1: var(--space-unit-base);
+    --line-height-caption-2: var(--space-unit-base);
+  }
 }
 
-@mixin text-normal {
-  font-size: $fontSizeNormal;
-  line-height: $lineHeightNormal;
+@include breakpoint(xs) {
+  :root {
+    --font-size-large-title: 24px;
+    --font-size-title-1: 24px;
+    --font-size-title-2: 20px;
+    --font-size-title-3: 17px;
+    --font-size-headline: 14px;
+    --font-size-body: 14px;
+    --font-size-subheadline: 13px;
+    --font-size-footnote: 13px;
+    --font-size-callout: 13px;
+    --font-size-caption-1: 12px;
+    --font-size-caption-2: 11px;
+
+    --font-weight-large-title: 900;
+    --font-weight-title-1: 800;
+    --font-weight-title-2: 700;
+    --font-weight-title-3: 600;
+    --font-weight-headline: 500;
+    --font-weight-body: 400;
+    --font-weight-subheadline: 500;
+    --font-weight-footnote: 400;
+    --font-weight-callout: 500;
+    --font-weight-caption-1: 400;
+    --font-weight-caption-2: 400;
+
+    --line-height-large-title: calc(2 * var(--space-unit-base));
+    --line-height-title-1: calc(1.75 * var(--space-unit-base));
+    --line-height-title-2: calc(1.75 * var(--space-unit-base));
+    --line-height-title-3: calc(1.5 * var(--space-unit-base));
+    --line-height-headline: calc(1.25 * var(--space-unit-base));
+    --line-height-body: calc(1.5 * var(--space-unit-base));
+    --line-height-subheadline: var(--space-unit-base);
+    --line-height-footnote: var(--space-unit-base);
+    --line-height-callout: calc(1.25 * var(--space-unit-base));
+    --line-height-caption-1: var(--space-unit-base);
+    --line-height-caption-2: var(--space-unit-base);
+  }
+}
+
+@mixin font-large-title {
+  font-size: var(--font-size-large-title);
+  font-weight: var(--font-weight-large-title);
+  line-height: var(--line-height-large-title);
+}
+
+@mixin font-title-1 {
+  font-size: var(--font-size-title-1);
+  font-weight: var(--font-weight-title-1);
+  line-height: var(--line-height-title-1);
+}
+
+@mixin font-title-2 {
+  font-size: var(--font-size-title-2);
+  font-weight: var(--font-weight-title-2);
+  line-height: var(--line-height-title-2);
+}
+
+@mixin font-title-3 {
+  font-size: var(--font-size-title-3);
+  font-weight: var(--font-weight-title-3);
+  line-height: var(--line-height-title-3);
+}
+
+@mixin font-headline {
+  font-size: var(--font-size-headline);
+  font-weight: var(--font-weight-headline);
+  line-height: var(--line-height-headline);
+}
+
+@mixin font-body {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-body);
+  line-height: var(--line-height-body);
+}
+
+@mixin font-callout {
+  font-size: var(--font-size-callout);
+  font-weight: var(--font-weight-callout);
+  line-height: var(--line-height-callout);
+}
+
+@mixin font-subheadline {
+  font-size: var(--font-size-subheadline);
+  font-weight: var(--font-weight-subheadline);
+  line-height: var(--line-height-subheadline);
+}
+
+@mixin font-footnote {
+  font-size: var(--font-size-footnote);
+  font-weight: var(--font-weight-footnote);
+  line-height: var(--line-height-footnote);
+}
+
+@mixin font-caption-1 {
+  font-size: var(--font-size-caption-1);
+  font-weight: var(--font-weight-caption-1);
+  line-height: var(--line-height-caption-1);
+}
+
+@mixin font-caption-2 {
+  font-size: var(--font-size-caption-2);
+  font-weight: var(--font-weight-caption-2);
+  line-height: var(--line-height-caption-2);
 }
 
 p,
@@ -27,11 +197,17 @@ h5 {
 }
 
 h4 {
-  @include text-big;
+  @include font-title-3();
 }
 
 h3 {
-  font-size: $fontSizeLarge;
-  line-height: $lineHeightLarge;
-  font-weight: $fontWeightNormal;
+  @include font-title-2();
+}
+
+h2 {
+  @include font-title-1();
+}
+
+h1 {
+  @include font-large-title();
 }

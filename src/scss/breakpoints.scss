@@ -1,0 +1,19 @@
+$breakpoints: (
+        xs: 32rem, // 512px
+        sm: 48rem, // 768px
+        md: 64rem, // 1024px
+        lg: 80rem, // 1280px
+        xl: 90rem  // 1440px
+);
+
+// max-width media query, can be used as
+// @include breakpoint(sm, "(orientation: landscape)") {
+// }
+// the second param is additional logic
+@mixin breakpoint($breakpoint, $logic: false) {
+  @if( $logic ) {
+    @media #{$logic} and (max-width: map-get($map: $breakpoints, $key: $breakpoint)) { @content; }
+  } @else {
+    @media (max-width: map-get($map: $breakpoints, $key: $breakpoint)) { @content; }
+  }
+}

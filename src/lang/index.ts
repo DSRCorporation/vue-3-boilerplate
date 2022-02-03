@@ -1,8 +1,9 @@
 export const messages = {
   "en-US": {
-    login: "Log In",
-    logout: "Log Out",
-    crud: "Crud",
+    login: "Sign In",
+    logout: "Sign Out",
+    welcome: "Welcome",
+    search: "Search",
     cats: "Cats",
 
     formError: {

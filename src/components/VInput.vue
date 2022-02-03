@@ -1,15 +1,20 @@
 <template>
-  <label>
-    {{ label }}
-    <input
-      class="input"
-      :value="modelValue"
-      :type="type"
-      :name="name"
-      @input="onInput($event)"
-    />
-    {{ this.errorMessage || serverError }}
-  </label>
+  <div>
+    <div class="input-container">
+      <input
+        class="input"
+        :value="modelValue"
+        :type="type"
+        :name="name"
+        :class="{ 'input--not-empty': !!modelValue }"
+        @input="onInput($event)"
+      />
+      <label class="input-label" :for="name">{{ label }}</label>
+    </div>
+    <div class="error-container">
+      {{ this.errorMessage || serverError }}
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -65,18 +70,49 @@ export default defineComponent({
 @import "../scss/constants";
 @import "../scss/typography";
 
-label {
-  color: $textColor;
+.input-container {
+  position: relative;
+  display: grid;
 }
 
 .input {
-  height: $gridNormal * 2;
-  background: transparent;
-  width: calc(100% - #{$gridSmall});
-  border: $borderSmall solid $borderColor;
-  text-align: center;
-  padding: 0 4px;
-  color: $textColor;
-  @include text-normal;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  background: none;
+  border-style: solid;
+  border-width: var(--border-xs);
+  border-color: var(--border-color);
+  border-radius: var(--border-radius-md);
+  padding: var(--space-md) var(--space-sm);
+
+  &:focus {
+    border-color: var(--primary-color);
+
+    & ~ .wc-input-label {
+      color: var(--primary-color);
+    }
+  }
+
+  &--not-empty ~ .input-label,
+  &:focus ~ .input-label {
+    top: 0;
+    @include font-caption-1();
+    background-color: var(
+      --input-background-color,
+      var(--background-light-color)
+    );
+  }
+}
+
+.input-label {
+  transition: all 0.2s ease-out 0s;
+
+  position: absolute;
+  left: var(--space-sm);
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--primary-color);
 }
 </style>

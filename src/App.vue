@@ -5,7 +5,7 @@
 <script lang="ts">
 import axios from "axios";
 import { StoreModules } from "@/store/types";
-import { CommonActionTypes } from "@/store/common";
+import { CommonActionTypes } from "@/store/common/types";
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -54,10 +54,10 @@ export default defineComponent({
 
 body,
 html {
-  font-family: $fontFamily;
-  @include text-normal;
-  background-color: $backgroundColor;
-  color: $textColor;
+  font-family: var(--font-family);
+  font-size: 16px; // it's rem value
+  background-color: var(--background-color);
+  color: var(--text-color);
   height: 100%;
   width: 100%;
   margin: 0;
@@ -70,5 +70,7 @@ body {
 #app {
   height: 100%;
   width: 100%;
+
+  @include font-body();
 }
 </style>

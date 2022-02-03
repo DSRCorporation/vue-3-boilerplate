@@ -6,13 +6,9 @@
       autocomplete="off"
       @submit.prevent="handleSubmit($event, submit)"
     >
-      <div class="login-form__logo">
-        <svg-icon class="login-form__logo__icon" icon="cat-logo"></svg-icon>
-        <span class="login-form__logo__text">
-          {{ i18n.t("crud") }} <br />
-          {{ i18n.t("cats") }}
-        </span>
-      </div>
+      <h1 class="login-form__header">
+        {{ i18n.t("welcome") }}
+      </h1>
 
       <v-input
         class="login-form__input"
@@ -32,6 +28,7 @@
       >
         <VeeErrorMessage name="password" />
       </v-input>
+
       <div class="login-form__buttons">
         <v-button type="submit" class="login-form__submit">{{
           i18n.t("login")
@@ -42,7 +39,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
 import VButton from "@/components/VButton.vue";
 import VInput from "@/components/VInput.vue";
 import { useI18n } from "vue-i18n";
@@ -51,21 +48,20 @@ import {
   ErrorMessage as VeeErrorMessage,
   SubmissionContext,
 } from "vee-validate";
-import SvgIcon from "@/components/SvgIcon.vue";
 import * as yup from "yup";
+import { ServerError } from "@/types/serverError";
 
 export default defineComponent({
   name: "LoginForm",
   components: {
     VButton,
-    SvgIcon,
     VInput,
     VeeForm,
     VeeErrorMessage,
   },
   props: {
     serverErrors: {
-      type: Object,
+      type: Object as PropType<ServerError>,
     },
   },
   emits: ["login"],
@@ -96,39 +92,21 @@ export default defineComponent({
 @import "../scss/typography";
 
 .login-form {
-  display: flex;
-  flex-direction: column;
-  background-color: $backgroundLightColor;
-  padding: $gridLarge;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.24);
-  border-radius: 2px;
+  display: grid;
+  background-color: var(--background-light-color);
+  padding: var(--space-xxxxxl) var(--space-xxxxl);
+  border-radius: var(--border-radius-lg);
 
-  &__logo {
-    display: flex;
-    align-items: center;
-    padding-bottom: $gridLarge;
-    align-self: center;
-    &__icon {
-      height: 64px;
-      width: 48px;
-      margin-right: $gridNormal;
-    }
-
-    &__text {
-      font-size: $fontSizeLarge;
-      line-height: $lineHeightLarge;
-      text-transform: uppercase;
-    }
+  &__header {
+    margin-bottom: var(--space-xxl);
   }
 
   &__input {
-    margin-bottom: $gridBase;
+    margin-bottom: var(--space-xxxxl);
   }
 
   &__buttons {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: $gridSmall;
+    display: grid;
   }
 }
 </style>

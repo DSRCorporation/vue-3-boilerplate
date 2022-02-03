@@ -4,13 +4,13 @@ import { h, PropType, defineComponent } from "vue";
 export default defineComponent({
   props: {
     items: {
-      type: Array as PropType<Array<any>>,
+      type: Array as PropType<Array<Record<string, unknown>>>,
     },
     keyProp: {
       type: String as PropType<string>,
       default: "id",
     },
-    thumbnailWidth: String,
+    isThumbnail: Boolean,
   },
   render() {
     if (!this.items || !this.$slots.default) {
@@ -20,9 +20,8 @@ export default defineComponent({
     let className = "list";
     const style: Record<string, string> = {};
 
-    if (this.thumbnailWidth) {
+    if (this.isThumbnail) {
       className += " list--thumbnail";
-      style["--thumbnail-width"] = this.thumbnailWidth;
     }
 
     return h(
@@ -34,7 +33,7 @@ export default defineComponent({
       this.items.map((item) => {
         return h(
           "li",
-          { key: item[this.keyProp] },
+          { key: item[this.keyProp] as string },
           this.$slots.default?.({ item: item })
         );
       })
@@ -47,7 +46,6 @@ export default defineComponent({
 @import "../scss/constants";
 
 .list {
-  --thumbnail-width: calc(25% - #{$gridNormal});
   list-style: none;
   padding: 0;
   margin: 0;
@@ -55,16 +53,9 @@ export default defineComponent({
   &--thumbnail {
     display: grid;
     // four cells grid by default
-    grid-template-columns: repeat(
-      auto-fill,
-      calc(var(--thumbnail-width) - #{$gridNormal})
-    );
-    grid-gap: $gridNormal;
+    grid-template-columns: repeat(var(--thumbnails-per-row, 4), 1fr);
+    grid-gap: var(--space-sm);
     justify-content: space-between;
-
-    .list__item {
-      margin-bottom: $gridBig;
-    }
   }
 }
 </style>

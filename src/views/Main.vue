@@ -9,9 +9,10 @@
 import { useI18n } from "vue-i18n";
 import { useStore } from "vuex";
 import { StoreModules } from "@/store/types";
-import { CommonActionTypes } from "@/store/common";
+import { CommonActionTypes } from "@/store/common/types";
 import VHeader from "@/components/VHeader.vue";
 import { defineComponent } from "vue";
+import { STORE_KEY } from "@/store";
 
 export default defineComponent({
   name: "VMain",
@@ -20,7 +21,7 @@ export default defineComponent({
   },
   data() {
     return {
-      store: useStore(),
+      store: useStore(STORE_KEY),
     };
   },
   methods: {

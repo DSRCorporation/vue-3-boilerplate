@@ -21,7 +21,6 @@ export default defineComponent({
   border-radius: var(--border-radius-md);
   color: var(--text-light-color);
   @include font-callout();
-  font-weight: 500;
   padding: var(--btn-padding-left, var(--space-xs))
     var(--btn-padding-top, var(--space-md));
   border: none;

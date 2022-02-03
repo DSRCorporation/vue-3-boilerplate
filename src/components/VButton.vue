@@ -31,7 +31,7 @@ export default defineComponent({
   letter-spacing: 0.05em;
 
   &--icon {
-    padding: var(--space-sm) var(--space-sm);
+    padding: var(--space-sm);
   }
 
   &--wrapper.button {

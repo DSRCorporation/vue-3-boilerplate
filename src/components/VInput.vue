@@ -83,7 +83,7 @@ export default defineComponent({
   border-style: solid;
   border-width: var(--border-xs);
   border-color: var(--border-color);
-  border-radius: 4px;
+  border-radius: var(--border-radius-md);
   padding: var(--space-md) var(--space-sm);
 
   &:focus {

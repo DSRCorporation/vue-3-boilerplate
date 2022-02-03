@@ -18,7 +18,7 @@ export default defineComponent({
 
 .button {
   background: var(--primary-color);
-  border-radius: 4px;
+  border-radius: var(--border-radius-md);
   color: var(--text-light-color);
   @include font-callout();
   font-weight: 500;

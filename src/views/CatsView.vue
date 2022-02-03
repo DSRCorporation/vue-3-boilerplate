@@ -116,8 +116,7 @@ export default defineComponent({
 }
 
 .cat-card {
-  // todo need constants for border radius
-  border-radius: calc(0.5 * var(--space-unit-base));
+  border-radius: var(--border-radius-lg);
   overflow: hidden;
 }
 

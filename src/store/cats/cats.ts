@@ -4,14 +4,13 @@ import { TYPES } from "@/services/helpers/containerTypes";
 import { Logger } from "@/services/logger";
 import { ErrorHandler } from "@/services/errorHandler";
 import { CatService } from "@/services/catService";
-import { RootState } from "@/store/types";
 import { Cat } from "@/types/cats";
-import { ActionTree, MutationTree } from "vuex";
 import axios from "axios";
 import {
-  CatsActionContext,
   CatsActions,
   CatsActionTypes,
+  CatsGetters,
+  CatsGetterTypes,
   CatsMutations,
   CatsMutationTypes,
   CatsState,
@@ -36,14 +35,14 @@ const state: CatsState = {
   cats: undefined,
 };
 
-const mutations: MutationTree<CatsState> & CatsMutations = {
-  [CatsMutationTypes.SET_CATS]: (state: CatsState, cats: Array<Cat>) => {
+const mutations: CatsMutations = {
+  [CatsMutationTypes.SET_CATS]: (state, cats) => {
     state.cats = cats;
   },
 };
 
-const actions: ActionTree<CatsState, RootState> & CatsActions = {
-  [CatsActionTypes.LOAD_CATS]: async ({ commit }: CatsActionContext) => {
+const actions: CatsActions = {
+  [CatsActionTypes.LOAD_CATS]: async ({ commit }) => {
     let cats: Array<Cat>;
 
     try {
@@ -59,9 +58,15 @@ const actions: ActionTree<CatsState, RootState> & CatsActions = {
   },
 };
 
+const getters: CatsGetters = {
+  [CatsGetterTypes.GET_CATS]: (state) => {
+    return state.cats;
+  },
+};
+
 export default {
-  namespaced: true,
   state,
   mutations,
   actions,
+  getters,
 };

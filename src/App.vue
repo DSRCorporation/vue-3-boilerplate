@@ -4,7 +4,6 @@
 
 <script lang="ts">
 import axios from "axios";
-import { StoreModules } from "@/store/types";
 import { CommonActionTypes } from "@/store/common/types";
 import { defineComponent } from "vue";
 
@@ -23,13 +22,10 @@ export default defineComponent({
 
     axios.interceptors.response.use(undefined, async (err) => {
       if (
-        err.response &&
-        err.response.status === 401 &&
+        err.response?.status === 401 &&
         this.$router.currentRoute.value.name !== "Login"
       ) {
-        await this.$store.dispatch(
-          `${StoreModules.COMMON}/${CommonActionTypes.LOGOUT}`
-        );
+        await this.$store.dispatch(CommonActionTypes.LOGOUT);
       }
 
       throw err;

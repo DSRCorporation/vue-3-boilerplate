@@ -8,24 +8,24 @@ new Server({
 
   models: {
     user: Model,
-    cat: Model
+    cat: Model,
   },
 
   seeds(server) {
     server.create<string, any, any>("user", {
       email: "dmitry",
       password: "dmitry",
-      token: null
+      token: null,
     });
     server.create<string, any, any>("user", {
       email: "anastasia",
       password: "1234",
-      token: null
+      token: null,
     });
     server.create<string, any, any>("user", {
       email: "johnsnow@blackcastle.ws",
       password: "khaleesi",
-      token: null
+      token: null,
     });
 
     for (let i = 0; i <= 5; i++) {
@@ -33,8 +33,8 @@ new Server({
         id: i,
         name: "Kitty # " + i,
         breed: {
-          id: i
-        }
+          id: i,
+        },
       });
     }
   },
@@ -50,33 +50,44 @@ new Server({
           email: attrs.email,
         });
         if (!user) {
-          return new Response(401, {}, {
-            "error": "INVALID_EMAIL",
-            "message": [
-              {
-                "property": "email",
-                "constraints": {
-                "isExist": "Incorrect email"
-              }
-            }]
-          });
+          return new Response(
+            401,
+            {},
+            {
+              error: "INVALID_EMAIL",
+              message: [
+                {
+                  property: "email",
+                  constraints: {
+                    isExist: "Incorrect email",
+                  },
+                },
+              ],
+            }
+          );
         }
 
-        if (user.password !== attrs.password){
-          return new Response(401, {}, {
-            "error": "INVALID_PASSWORD",
-            "message": [{
-              "property": "password",
-              "constraints": {
-              "correctPassword": "Incorrect password"
+        if (user.password !== attrs.password) {
+          return new Response(
+            401,
+            {},
+            {
+              error: "INVALID_PASSWORD",
+              message: [
+                {
+                  property: "password",
+                  constraints: {
+                    correctPassword: "Incorrect password",
+                  },
+                },
+              ],
             }
-            }]
-          });
+          );
         }
 
         user.attrs.token = "str" + new Date().getTime();
 
-        return {data: {authToken: user.attrs.token}};
+        return { data: { authToken: user.attrs.token } };
       },
       { timing: 100 }
     );
@@ -84,21 +95,21 @@ new Server({
     this.get("/v1/cats", (schema) => {
       return {
         // @ts-ignore
-        data: schema.cats.all().models
-      }
-    })
+        data: schema.cats.all().models,
+      };
+    });
 
     this.get("/v1/cats/:id", (schema, request) => {
       return {
         // @ts-ignore
-        data: schema.cats.findBy({id: request.params.id})
-      }
-    })
+        data: schema.cats.findBy({ id: request.params.id }),
+      };
+    });
 
     // uncomment it if you need to pass your requests to the server
     /*this.passthrough((request)=> {
       return true;
     });*/
-  }
+  },
 });
 /*eslint-enable*/

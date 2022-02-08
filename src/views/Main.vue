@@ -7,12 +7,10 @@
 
 <script lang="ts">
 import { useI18n } from "vue-i18n";
-import { useStore } from "vuex";
-import { StoreModules } from "@/store/types";
+import { useStore } from "@/store";
 import { CommonActionTypes } from "@/store/common/types";
 import VHeader from "@/components/VHeader.vue";
 import { defineComponent } from "vue";
-import { STORE_KEY } from "@/store";
 
 export default defineComponent({
   name: "VMain",
@@ -21,7 +19,7 @@ export default defineComponent({
   },
   data() {
     return {
-      store: useStore(STORE_KEY),
+      store: useStore(),
     };
   },
   methods: {
@@ -29,10 +27,7 @@ export default defineComponent({
       // Example of usage services' plugin injection
       this.$logger.logInfo("Initiate logout!");
 
-      //todo improve typings
-      await this.store.dispatch(
-        `${StoreModules.COMMON}/${CommonActionTypes.LOGOUT}`
-      );
+      await this.store.dispatch(CommonActionTypes.LOGOUT);
     },
   },
   setup() {

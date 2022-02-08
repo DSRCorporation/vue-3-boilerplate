@@ -37,18 +37,16 @@
 </template>
 
 <script lang="ts">
-import { useStore } from "vuex";
-import { StoreModules } from "@/store/types";
-import { CatsActionTypes } from "@/store/cats/types";
+import { useStore } from "@/store";
+import { CatsActionTypes, CatsGetterTypes } from "@/store/cats/types";
 import CatThumbnail from "@/components/CatThumbnail.vue";
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, onBeforeMount } from "vue";
 import { useI18n } from "vue-i18n";
 import ListRenderer from "@/components/ListRenderer.vue";
 import UserAvatar from "@/components/user/UserAvatar.vue";
 import SvgIcon from "@/components/SvgIcon.vue";
 import VButton from "@/components/VButton.vue";
 import VInput from "@/components/VInput.vue";
-import { STORE_KEY } from "@/store";
 
 export default defineComponent({
   name: "CatsView",
@@ -60,13 +58,14 @@ export default defineComponent({
     SvgIcon,
     VButton,
   },
-  beforeCreate() {
-    this.$store.dispatch(`${StoreModules.CATS}/${CatsActionTypes.LOAD_CATS}`);
-  },
   setup() {
-    const store = useStore(STORE_KEY);
+    const store = useStore();
 
-    let cats = computed(() => store.state.cats.cats);
+    onBeforeMount(() => {
+      store.dispatch(CatsActionTypes.LOAD_CATS);
+    });
+
+    const cats = computed(() => store.getters[CatsGetterTypes.GET_CATS]);
 
     return {
       i18n: useI18n(),

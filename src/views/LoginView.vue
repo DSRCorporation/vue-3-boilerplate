@@ -8,15 +8,13 @@
 <script lang="ts">
 import LoginForm from "../components/LoginForm.vue";
 import { Credentials } from "@/services/userService";
-import { useStore } from "vuex";
-import { StoreModules } from "@/store/types";
+import { useStore } from "@/store";
 import { CommonActionTypes } from "@/store/common/types";
 import { defineComponent } from "vue";
 import { container } from "tsyringe";
 import { ErrorHandler } from "@/services/errorHandler";
 import axios from "axios";
 import VHeader from "@/components/VHeader.vue";
-import { STORE_KEY } from "@/store";
 
 const deps = {
   get errorHandler() {
@@ -31,7 +29,7 @@ export default defineComponent({
     VHeader,
   },
   setup() {
-    const store = useStore(STORE_KEY);
+    const store = useStore();
 
     return {
       store,
@@ -44,12 +42,8 @@ export default defineComponent({
     ): Promise<void> {
       this.$logger.logInfo("Initiate login!");
 
-      //todo improve typings
       try {
-        await this.store.dispatch(
-          `${StoreModules.COMMON}/${CommonActionTypes.LOGIN}`,
-          credentials
-        );
+        await this.store.dispatch(CommonActionTypes.LOGIN, credentials);
       } catch (e) {
         if (axios.isAxiosError(e)) {
           deps.errorHandler.handleBackendError(e, setFieldError);

@@ -1,18 +1,16 @@
-import { ActionContext, ActionTree, MutationTree } from "vuex";
-import { AugmentedActionContext, RootState } from "@/store/types";
-import { Credentials, UserService } from "@/services/userService";
+import { UserService } from "@/services/userService";
 import { Logger } from "@/services/logger";
 import { Router } from "vue-router";
 import { ErrorHandler } from "@/services/errorHandler";
 import { container } from "tsyringe";
 import { TYPES } from "@/services/helpers/containerTypes";
 import {
-  CommonActionContext,
   CommonActions,
   CommonActionTypes,
+  CommonGetters,
+  CommonGetterTypes,
   CommonMutations,
   CommonMutationTypes,
-  CommonState,
 } from "@/store/common/types";
 
 const deps = {
@@ -34,11 +32,8 @@ const state = {
   token: localStorage.getItem("token"),
 };
 
-const mutations: MutationTree<CommonState> & CommonMutations = {
-  [CommonMutationTypes.SET_TOKEN]: (
-    state: CommonState,
-    token: string | undefined
-  ) => {
+const mutations: CommonMutations = {
+  [CommonMutationTypes.SET_TOKEN]: (state, token) => {
     if (token) {
       localStorage.setItem("token", token);
     } else {
@@ -48,11 +43,8 @@ const mutations: MutationTree<CommonState> & CommonMutations = {
   },
 };
 
-const actions: ActionTree<CommonState, RootState> & CommonActions = {
-  [CommonActionTypes.LOGIN]: async (
-    { commit }: CommonActionContext,
-    payload: Credentials
-  ) => {
+const actions: CommonActions = {
+  [CommonActionTypes.LOGIN]: async ({ commit }, payload) => {
     let token: string;
     try {
       token = await deps.userService.login(payload);
@@ -64,15 +56,21 @@ const actions: ActionTree<CommonState, RootState> & CommonActions = {
     }
   },
 
-  [CommonActionTypes.LOGOUT]: async ({ commit }: CommonActionContext) => {
+  [CommonActionTypes.LOGOUT]: async ({ commit }) => {
     commit(CommonMutationTypes.SET_TOKEN, undefined);
     await deps.router.push({ name: "Login" });
   },
 };
 
+const getters: CommonGetters = {
+  [CommonGetterTypes.IS_AUTH]: (state) => {
+    return !!state.token;
+  },
+};
+
 export default {
-  namespaced: true,
   state,
   mutations,
   actions,
+  getters,
 };

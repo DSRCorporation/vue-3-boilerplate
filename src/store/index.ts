@@ -1,7 +1,7 @@
-import { createStore, Store } from "vuex";
+import { createStore, Store, useStore as baseUseStore } from "vuex";
 import common from "@/store/common/common";
 import cats from "@/store/cats/cats";
-import { RootState } from "@/store/types";
+import { RootState, RootStore } from "@/store/types";
 import { InjectionKey } from "vue";
 
 // injection key: required for useStore typings
@@ -13,3 +13,7 @@ export default createStore<RootState>({
     cats,
   },
 });
+
+export function useStore(): RootStore {
+  return baseUseStore(STORE_KEY);
+}

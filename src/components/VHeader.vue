@@ -15,15 +15,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
 import { useI18n } from "vue-i18n";
 import VButton from "@/components/VButton.vue";
 import UserAvatar from "@/components/user/UserAvatar.vue";
-import { createNamespacedHelpers } from "vuex";
-import { StoreModules } from "@/store/types";
-import { CommonState } from "@/store/common/types";
-
-const { mapState } = createNamespacedHelpers(StoreModules.COMMON);
+import { useStore } from "@/store";
+import { CommonGetterTypes } from "@/store/common/types";
 
 export default defineComponent({
   name: "VHeader",
@@ -31,11 +28,15 @@ export default defineComponent({
     UserAvatar,
     VButton,
   },
-  computed: mapState<CommonState>({
-    isAuthenticated: (state: CommonState) => !!state.token,
-  }),
   setup() {
+    const store = useStore();
+
+    const isAuthenticated = computed(
+      () => store.getters[CommonGetterTypes.IS_AUTH]
+    );
+
     return {
+      isAuthenticated,
       i18n: useI18n(),
     };
   },

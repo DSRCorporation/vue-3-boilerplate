@@ -14,20 +14,24 @@
         class="login-form__input"
         label="Email"
         name="email"
+        :invalid="validation.email"
         v-model="credentials.email"
       >
-        <VeeErrorMessage name="email" />
+        <template #error>
+          <VeeErrorMessage name="email" />
+        </template>
       </v-input>
 
-      <v-input
+      <v-password
         class="login-form__input"
-        label="Password"
         name="password"
-        type="password"
+        :invalid="validation.password"
         v-model="credentials.password"
       >
-        <VeeErrorMessage name="password" />
-      </v-input>
+        <template #error>
+          <VeeErrorMessage name="password" />
+        </template>
+      </v-password>
 
       <div class="login-form__buttons">
         <v-button type="submit" class="login-form__submit">{{
@@ -50,10 +54,12 @@ import {
 } from "vee-validate";
 import * as yup from "yup";
 import { ServerError } from "@/types/serverError";
+import VPassword from "@/components/VPassword.vue";
 
 export default defineComponent({
   name: "LoginForm",
   components: {
+    VPassword,
     VButton,
     VInput,
     VeeForm,
@@ -81,6 +87,7 @@ export default defineComponent({
   },
   methods: {
     submit<H, C extends SubmissionContext>(value: H, actions: C) {
+      debugger;
       this.$emit("login", this.credentials, actions.setFieldError);
     },
   },

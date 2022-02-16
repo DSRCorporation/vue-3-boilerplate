@@ -1,118 +1,131 @@
 <template>
-  <div>
-    <div class="input-container">
+  <v-field
+    :label="label"
+    :empty="isEmpty"
+    :invalid="invalid"
+    :focused="isFocused"
+    :disabled="!!$attrs.disabled"
+    :class="$attrs.class"
+    @click="$refs.input.focus()"
+  >
+    <template #prefix>
+      <slot name="prefix" />
+    </template>
+
+    <template #infix>
       <input
+        ref="input"
         class="input"
+        v-bind="inputAttrs"
         :value="modelValue"
-        :type="type"
-        :name="name"
-        :class="{ 'input--not-empty': !!modelValue }"
-        @input="onInput($event)"
+        @input="handleInput($event)"
+        @focusin="handleFocusIn"
+        @focusout="handleFocusOut"
       />
-      <label class="input-label" :for="name">{{ label }}</label>
-    </div>
-    <div class="error-container">
-      {{ this.errorMessage || serverError }}
-    </div>
-  </div>
+    </template>
+
+    <template #suffix>
+      <slot name="suffix" />
+    </template>
+
+    <template #error>
+      <slot name="error" />
+    </template>
+
+    <template #hint>
+      <slot name="hint" />
+    </template>
+  </v-field>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { useField } from "vee-validate";
+import VField from "@/components/VField.vue";
 
 export default defineComponent({
   name: "VInput",
+
+  components: { VField },
+
+  inheritAttrs: false,
+
   props: {
+    modelValue: {
+      type: [String, Number],
+      required: false,
+    },
     label: {
       type: String,
-      required: true,
-    },
-    modelValue: {
-      type: String,
       required: false,
+      default: "",
     },
-    type: {
-      type: String,
+    invalid: {
+      type: Boolean,
       required: false,
-    },
-    name: {
-      type: String,
-      required: true,
-    },
-    serverError: {
-      type: String,
+      default: false,
     },
   },
-  setup(props) {
-    const { handleChange, errorMessage } = useField(props.name, undefined, {
-      initialValue: props.modelValue,
-      label: props.label,
-    });
+
+  emits: {
+    "update:modelValue": null,
+  },
+
+  data() {
     return {
-      handleChange,
-      errorMessage,
+      isFocused: false,
     };
   },
+
+  computed: {
+    inputAttrs() {
+      return Object.keys(this.$attrs).reduce((acc, key) => {
+        if (key === "class") return acc;
+
+        return { ...acc, [key]: this.$attrs[key] };
+      }, {});
+    },
+
+    isEmpty() {
+      return !String(this.modelValue).trim();
+    },
+  },
+
   methods: {
-    onInput($event: Event) {
+    handleInput(event: InputEvent) {
       this.$emit(
         "update:modelValue",
-        ($event.target as HTMLInputElement).value
+        (event?.target as HTMLInputElement)?.value
       );
-      this.handleChange($event);
+    },
+
+    handleFocusIn() {
+      this.isFocused = true;
+    },
+
+    handleFocusOut() {
+      this.isFocused = false;
     },
   },
 });
 </script>
 
-<style scoped lang="scss">
-@import "../scss/constants";
-@import "../scss/typography";
-
-.input-container {
-  position: relative;
-  display: grid;
-}
+<style lang="scss" scoped>
+@import "src/scss/constants";
+@import "src/scss/typography";
 
 .input {
-  width: 100%;
-  box-sizing: border-box;
+  border: none;
+  font-family: inherit;
   outline: none;
-  background: none;
-  border-style: solid;
-  border-width: var(--border-xs);
-  border-color: var(--border-color);
-  border-radius: var(--border-radius-md);
-  padding: var(--space-md) var(--space-sm);
+  width: 100%;
 
-  &:focus {
-    border-color: var(--primary-color);
+  @include font-body();
 
-    & ~ .wc-input-label {
-      color: var(--primary-color);
-    }
+  color: var(--text-color);
+  background-color: transparent;
+
+  &::placeholder {
+    color: var(--color-neutral-3);
   }
-
-  &--not-empty ~ .input-label,
-  &:focus ~ .input-label {
-    top: 0;
-    @include font-caption-1();
-    background-color: var(
-      --input-background-color,
-      var(--background-light-color)
-    );
-  }
-}
-
-.input-label {
-  transition: all 0.2s ease-out 0s;
-
-  position: absolute;
-  left: var(--space-sm);
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  color: var(--primary-color);
 }
 </style>

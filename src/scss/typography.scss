@@ -187,6 +187,20 @@
   line-height: var(--line-height-caption-2);
 }
 
+@mixin text-overflow-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin n-lines($lines-count) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines-count;
+}
+
 p,
 h1,
 h2,

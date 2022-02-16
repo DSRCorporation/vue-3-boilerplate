@@ -28,6 +28,7 @@ export default defineComponent({
 
 //todo introduce different icon sizes
 .svg-icon {
+  display: flex;
   width: calc(1.5 * var(--space-unit-base));
   height: calc(1.5 * var(--space-unit-base));
 }

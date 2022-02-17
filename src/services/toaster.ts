@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { useToast } from "vue-toastification";
 import { TYPES } from "@/services/helpers/containerTypes";
 import { InstalledPlugins } from "@/vue-component-types";
 
@@ -7,17 +8,17 @@ export interface IToaster {
   error(message: string): void;
 }
 
+const toast = useToast();
+
 @injectable()
 export class Toaster implements IToaster {
   constructor(@inject(TYPES.VuePlugins) private vuePlugins: InstalledPlugins) {}
 
   info(message: string): void {
-    //todo implement it: integrate any third-party library
-    alert(message);
+    toast.info(message);
   }
 
   error(message: string): void {
-    //todo implement it: integrate any third-party library
-    alert(message);
+    toast.error(message);
   }
 }

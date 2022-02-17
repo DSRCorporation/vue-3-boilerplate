@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import VueFinalModal from "vue-final-modal";
+import VueToast from "vue-toastification";
 
 import router from "./router";
 import store, { STORE_KEY } from "./store";
@@ -14,6 +15,8 @@ import i18n from "@/lang/i18n";
 import { initContainer } from "@/services/helpers/containerInitialization";
 import { ValidationHelper } from "@/validation/validationHelper";
 import { AppConfig } from "@/services/appConfig";
+import { toastConfig } from "@/config/toastConfig";
+import "@/scss/toaster.scss";
 
 // Step 1: Creation of Vue application
 const app = createApp(App);
@@ -32,6 +35,7 @@ app
   .use(router)
   .use(store, STORE_KEY)
   .use(VueFinalModal)
+  .use(VueToast, toastConfig)
   // Injection DI Services into Vue as plugins (this part can be removed if decorative approach is preferable for you)
   .use(
     serviceInjectionPlugin(

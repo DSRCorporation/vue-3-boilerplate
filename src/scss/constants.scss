@@ -1,5 +1,28 @@
 @import "breakpoints";
 
+$primary-color: #2284e5;
+$primary-color-hover: darken($primary-color, 5);
+$primary-color-pressed: darken($primary-color, 10);
+$secondary-color: #8028ef;
+$secondary-color-hover: darken($secondary-color, 5);
+$secondary-color-pressed: darken($secondary-color, 10);
+$danger-color: #ef2727;
+
+$color-key-primary: #1f2933;
+$color-key-primary-light: #2e3841;
+$color-key-secondary: #4b545c;
+$color-key-tertiary: #787e85;
+$color-key-quarternary: #a5a9ad;
+$color-key-quintary: #e8e9ea;
+
+$background-primary: rgba($primary-color, 0.05);
+$background-primary-dark: rgba($primary-color, 0.15);
+$background-secondary: rgba($secondary-color, 0.05);
+$background-secondary-dark: rgba($secondary-color, 0.15);
+$background-key-primary: rgba($color-key-primary, 0.05);
+$background-key-primary-dark: rgba($color-key-primary, 0.1);
+$background-danger: rgba($danger-color, 0.1);
+
 :root {
   // not scalable to screen size
   --space-unit-base: 1rem;
@@ -40,29 +63,6 @@
   --font-family: Roboto, sans-serif;
 
   // COLORS
-  $primary-color: #2284e5;
-  $primary-color-hover: darken($primary-color, 5);
-  $primary-color-pressed: darken($primary-color, 10);
-  $secondary-color: #8028ef;
-  $secondary-color-hover: darken($secondary-color, 5);
-  $secondary-color-pressed: darken($secondary-color, 10);
-  $danger-color: #ef2727;
-
-  $color-key-primary: #1f2933;
-  $color-key-primary-light: #2e3841;
-  $color-key-secondary: #4b545c;
-  $color-key-tertiary: #787e85;
-  $color-key-quarternary: #a5a9ad;
-  $color-key-quintary: #e8e9ea;
-
-  $background-primary: rgba($primary-color, 0.05);
-  $background-primary-dark: rgba($primary-color, 0.15);
-  $background-secondary: rgba($secondary-color, 0.05);
-  $background-secondary-dark: rgba($secondary-color, 0.15);
-  $background-key-primary: rgba($color-key-primary, 0.05);
-  $background-key-primary-dark: rgba($color-key-primary, 0.1);
-  $background-danger: rgba($danger-color, 0.1);
-
   --background-color: #f4f4f5;
   --background-light-color: #ffffff;
 

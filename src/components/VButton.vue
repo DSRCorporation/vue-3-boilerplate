@@ -16,7 +16,7 @@ type ButtonVariants = "filled" | "stroke" | "noBg";
 type ButtonVariantColors = "black" | "primary" | "secondary";
 
 export default defineComponent({
-  name: "AppButton",
+  name: "VButton",
   props: {
     size: {
       type: String as PropType<ButtonSizes>,

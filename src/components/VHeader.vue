@@ -9,7 +9,9 @@
       class="button--wrapper"
     >
       <!--todo name is stub-->
-      <user-avatar name="A"></user-avatar>
+      <template #icon>
+        <user-avatar name="A"></user-avatar>
+      </template>
     </v-button>
   </header>
 </template>

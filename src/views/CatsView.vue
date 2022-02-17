@@ -11,7 +11,9 @@
       ></v-input>
 
       <v-button class="cats-view__add-btn button--icon">
-        <svg-icon icon="add"></svg-icon>
+        <template #icon>
+          <svg-icon icon="add"></svg-icon>
+        </template>
       </v-button>
     </header>
 

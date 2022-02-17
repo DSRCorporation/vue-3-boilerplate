@@ -37,7 +37,7 @@
   --space-xxxxxxl: calc(6 * var(--space-unit)); // 96px
   --space-xxxxxxxl: calc(7.5 * var(--space-unit)); // 120px
 
-  --font-family: Roboto;
+  --font-family: Roboto, sans-serif;
 
   // COLORS
   $primary-color: #2284e5;
@@ -103,4 +103,10 @@
   //box shadows
   --box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.16), 0px 1px 2px rgba(0, 0, 0, 0.12),
     0px 1px 2px rgba(0, 0, 0, 0.24);
+
+  // modal
+  --modal-backdrop-filter: blur(8px);
+  --modal-size-small: 464px;
+  --modal-size-medium: 624px;
+  --modal-size-large: 784px;
 }

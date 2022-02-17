@@ -1,4 +1,5 @@
 import "reflect-metadata";
+import VueFinalModal from "vue-final-modal";
 
 import router from "./router";
 import store, { STORE_KEY } from "./store";
@@ -30,6 +31,7 @@ container
 app
   .use(router)
   .use(store, STORE_KEY)
+  .use(VueFinalModal)
   // Injection DI Services into Vue as plugins (this part can be removed if decorative approach is preferable for you)
   .use(
     serviceInjectionPlugin(

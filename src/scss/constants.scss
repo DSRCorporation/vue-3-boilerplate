@@ -22,27 +22,73 @@
 :root,
 * {
   //GRID
-  --space-xxxxs: calc(0.125 * var(--space-unit));
-  --space-xxxs: calc(0.25 * var(--space-unit));
-  --space-xxs: calc(0.375 * var(--space-unit));
-  --space-xs: calc(0.5 * var(--space-unit));
-  --space-sm: calc(0.75 * var(--space-unit));
-  --space-md: calc(1 * var(--space-unit));
-  --space-lg: calc(1.25 * var(--space-unit));
-  --space-xl: calc(1.5 * var(--space-unit));
-  --space-xxl: calc(2 * var(--space-unit));
-  --space-xxxl: calc(2.5 * var(--space-unit));
-  --space-xxxxl: calc(3 * var(--space-unit));
-  --space-xxxxxl: calc(4.5 * var(--space-unit));
-  --space-xxxxxxl: calc(6 * var(--space-unit));
-  --space-xxxxxxxl: calc(7.5 * var(--space-unit));
+  --space-xxxxs: calc(0.125 * var(--space-unit)); // 2px
+  --space-xxxs: calc(0.25 * var(--space-unit)); // 4px
+  --space-xxs: calc(0.375 * var(--space-unit)); // 6px
+  --space-xs: calc(0.5 * var(--space-unit)); // 8px
+  --space-sm: calc(0.75 * var(--space-unit)); // 12px
+  --space-md: calc(1 * var(--space-unit)); // 16px
+  --space-lg: calc(1.25 * var(--space-unit)); // 20px
+  --space-xl: calc(1.5 * var(--space-unit)); // 24px
+  --space-xxl: calc(2 * var(--space-unit)); // 32px
+  --space-xxxl: calc(2.5 * var(--space-unit)); // 40px
+  --space-xxxxl: calc(3 * var(--space-unit)); // 48px
+  --space-xxxxxl: calc(4.5 * var(--space-unit)); // 72px
+  --space-xxxxxxl: calc(6 * var(--space-unit)); // 96px
+  --space-xxxxxxxl: calc(7.5 * var(--space-unit)); // 120px
 
   --font-family: Roboto;
 
   // COLORS
+  $primary-color: #2284e5;
+  $primary-color-hover: darken($primary-color, 5);
+  $primary-color-pressed: darken($primary-color, 10);
+  $secondary-color: #8028ef;
+  $secondary-color-hover: darken($secondary-color, 5);
+  $secondary-color-pressed: darken($secondary-color, 10);
+  $danger-color: #ef2727;
+
+  $color-key-primary: #1f2933;
+  $color-key-primary-light: #2e3841;
+  $color-key-secondary: #4b545c;
+  $color-key-tertiary: #787e85;
+  $color-key-quarternary: #a5a9ad;
+  $color-key-quintary: #e8e9ea;
+
+  $background-primary: rgba($primary-color, 0.05);
+  $background-primary-dark: rgba($primary-color, 0.15);
+  $background-secondary: rgba($secondary-color, 0.05);
+  $background-secondary-dark: rgba($secondary-color, 0.15);
+  $background-key-primary: rgba($color-key-primary, 0.05);
+  $background-key-primary-dark: rgba($color-key-primary, 0.1);
+  $background-danger: rgba($danger-color, 0.1);
+
   --background-color: #f4f4f5;
-  --primary-color: #2284e5;
   --background-light-color: #ffffff;
+
+  --primary-color: #{$primary-color};
+  --primary-color-hover: #{$primary-color-hover};
+  --primary-color-pressed: #{$primary-color-pressed};
+  --secondary-color: #{$secondary-color};
+  --secondary-color-hover: #{$secondary-color-hover};
+  --secondary-color-pressed: #{$secondary-color-pressed};
+  --danger-color: #{$danger-color};
+
+  --color-key-primary: #{$color-key-primary};
+  --color-key-primary-light: #{$color-key-primary-light};
+  --color-key-secondary: #{$color-key-secondary};
+  --color-key-tertiary: #{$color-key-tertiary};
+  --color-key-quarternary: #{$color-key-quarternary};
+  --color-key-quintary: #{$color-key-quintary};
+
+  --background-key-primary: #{$background-key-primary};
+  --background-key-primary-dark: #{$background-key-primary-dark};
+  --background-primary: #{$background-primary};
+  --background-primary-dark: #{$background-primary-dark};
+  --background-secondary: #{$background-secondary};
+  --background-secondary-dark: #{$background-secondary-dark};
+  --background-danger: #{$background-danger};
+
   --text-color: #000000;
   --text-light-color: #ffffff;
   --border-color: #cccccc;

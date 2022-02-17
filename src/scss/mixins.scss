@@ -1,0 +1,32 @@
+@mixin transition-slow($selectors...) {
+  @include transition(400ms, $selectors...);
+}
+
+@mixin transition-default($selectors...) {
+  @include transition(250ms, $selectors...);
+}
+
+@mixin transition-fast($selectors...) {
+  @include transition(150ms, $selectors...);
+}
+
+@mixin transition($duration, $selectors...) {
+  $result: ();
+
+  @for $i from 1 through length($selectors) {
+    $prop: nth($selectors, $i);
+    $result: append($result, $prop);
+    $result: append($result, ease-in-out $duration);
+
+    @if $i != length($selectors) {
+      $result: append(
+          $result,
+          unquote(
+            $string: ",",
+          )
+      );
+    }
+  }
+
+  transition: $result;
+}

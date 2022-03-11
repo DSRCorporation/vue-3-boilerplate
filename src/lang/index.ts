@@ -3,6 +3,7 @@ export const messages = {
     login: "Sign In",
     logout: "Sign Out",
     welcome: "Welcome",
+    password: "Password",
     search: "Search",
     cats: "Cats",
 

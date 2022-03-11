@@ -46,6 +46,8 @@ export default defineComponent({
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body,
@@ -56,7 +58,6 @@ html {
   color: var(--text-color);
   height: 100%;
   width: 100%;
-  margin: 0;
 }
 
 body {

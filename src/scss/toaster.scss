@@ -1,0 +1,43 @@
+@import "constants";
+
+$vt-font-family: inherit;
+$vt-toast-min-width: 328px;
+$vt-toast-min-height: auto;
+
+$vt-color-default: $color-key-primary;
+$vt-text-color-default: white;
+
+$vt-color-error: lighten($danger-color, 40);
+$vt-text-color-error: $color-key-primary;
+
+$vt-color-success: lighten($primary-color, 50);
+$vt-text-color-success: $color-key-primary;
+
+// todo: add variables for info, warning types
+$vt-color-info: #2196f3;
+$vt-text-color-info: #fff;
+
+$vt-color-warning: #ffc107;
+$vt-text-color-warning: #fff;
+
+@import "vue-toastification/src/scss/_variables";
+@import "vue-toastification/src/scss/_toastContainer";
+@import "vue-toastification/src/scss/_toast";
+@import "vue-toastification/src/scss/_closeButton";
+@import "vue-toastification/src/scss/_progressBar";
+@import "vue-toastification/src/scss/_icon";
+@import "vue-toastification/src/scss/animations/_bounce";
+
+.Vue-Toastification__toast {
+  border-radius: var(--border-radius-md);
+  box-shadow: none;
+  padding: var(--space-sm) var(--space-xl);
+
+  &--success svg {
+    color: $primary-color;
+  }
+
+  &--error svg {
+    color: $danger-color;
+  }
+}

@@ -88,10 +88,15 @@ $background-danger: rgba($danger-color, 0.1);
   --background-secondary: #{$background-secondary};
   --background-secondary-dark: #{$background-secondary-dark};
   --background-danger: #{$background-danger};
+  --background-disabled: rgba(112, 115, 116, 0.11);
 
   --text-color: #000000;
   --text-light-color: #ffffff;
   --border-color: #cccccc;
+  --color-danger: #{$danger-color};
+
+  --color-neutral-3: #666666;
+  --color-neutral-4: #999999;
 
   //borders
   --border-xs: 1px;
@@ -103,6 +108,8 @@ $background-danger: rgba($danger-color, 0.1);
   //box shadows
   --box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.16), 0px 1px 2px rgba(0, 0, 0, 0.12),
     0px 1px 2px rgba(0, 0, 0, 0.24);
+
+  --box-shadow-medium: 0px 4px 16px rgba(0, 0, 0, 0.08);
 
   // modal
   --modal-backdrop-filter: blur(8px);

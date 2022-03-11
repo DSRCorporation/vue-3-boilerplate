@@ -19,12 +19,7 @@
     $result: append($result, ease-in-out $duration);
 
     @if $i != length($selectors) {
-      $result: append(
-          $result,
-          unquote(
-            $string: ",",
-          )
-      );
+      $result: append($result, unquote($string: ","));
     }
   }
 

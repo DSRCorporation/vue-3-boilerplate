@@ -11,6 +11,7 @@
     "test:components": "vue-cli-service test:components"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.2",
     "axios": "^0.24.0",
     "core-js": "^3.19.3",
     "reflect-metadata": "^0.1.13",

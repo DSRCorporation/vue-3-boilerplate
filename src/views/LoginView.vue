@@ -83,7 +83,6 @@ export default defineComponent({
   .login-view {
     &__form {
       width: 100%;
-      padding: 0 var(--space-xxxxl);
     }
   }
 }

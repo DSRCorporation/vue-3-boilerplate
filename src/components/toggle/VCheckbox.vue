@@ -52,15 +52,15 @@ input {
   // checked, indeterminate
   &:checked,
   &:indeterminate {
-    background-color: var(--primary-color);
+    background-color: var(--color-primary);
 
     & + span:before {
-      border-color: var(--primary-color);
-      background-color: var(--primary-color);
+      border-color: var(--color-primary);
+      background-color: var(--color-primary);
     }
 
     & + span:after {
-      border-color: var(--background-light-color);
+      border-color: var(--color-key-background);
     }
   }
 
@@ -72,7 +72,7 @@ input {
   // active
   &:active:checked + span:before {
     border-color: transparent;
-    background-color: var(--primary-color);
+    background-color: var(--color-primary);
   }
 
   // disabled
@@ -81,14 +81,14 @@ input {
       cursor: initial;
 
       &:before {
-        border-color: var(--background-key-primary-dark);
+        border-color: var(--color-background-color-primary-dark);
       }
     }
 
     &:checked,
     &:indeterminate {
       & + span:before {
-        background-color: var(--background-primary-dark);
+        background-color: var(--color-background-primary-dark);
         border-color: transparent;
       }
     }

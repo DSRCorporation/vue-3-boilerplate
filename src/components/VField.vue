@@ -77,7 +77,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../scss/constants";
+@import "../scss/tokens";
 @import "../scss/typography";
 @import "../scss/mixins";
 
@@ -88,7 +88,7 @@ export default defineComponent({
 .field {
   background-color: transparent;
   border-radius: var(--border-radius-md);
-  border: var(--border-xs) solid var(--border-color);
+  border: var(--border-xs) solid var(--color-key-quaternary);
   padding: calc(var(--space-sm) - var(--border-xs)) var(--space-xs)
     calc(var(--space-sm) - var(--border-xs))
     calc(var(--space-md) - var(--border-xs));
@@ -101,21 +101,21 @@ export default defineComponent({
   @include transition-default(border-color);
 
   &:hover:not(&--disabled):not(&--invalid):not(&--focused) {
-    border-color: var(--color-neutral-4);
+    border-color: var(--color-key-tertiary);
   }
 
   &--focused:not(&--disabled):not(&--invalid) {
-    border-color: var(--primary-color);
+    border-color: var(--color-primary);
   }
 
   &--invalid:not(&--disabled) {
-    border-color: var(--color-danger);
+    border-color: var(--color-error);
   }
 
   &--disabled {
     pointer-events: none;
-    border-color: var(--background-disabled);
-    background-color: var(--background-disabled);
+    border-color: var(--color-background-disabled);
+    background-color: var(--color-background-disabled);
   }
 
   &__prefix {
@@ -155,7 +155,7 @@ export default defineComponent({
     transform: translate(0, 0);
 
     pointer-events: none;
-    color: var(--color-neutral-3);
+    color: var(--color-key-secondary);
   }
 
   &--focused &__label,
@@ -169,27 +169,27 @@ export default defineComponent({
     padding: 0 var(--space-xs);
     border-radius: var(--border-radius-md);
 
-    background-color: var(--background-light-color);
+    background-color: var(--color-key-background);
   }
 
   &--focused:not(&--invalid) &__label,
   &:not(&--empty):not(&--invalid) &__label {
-    color: var(--primary-color);
+    color: var(--color-primary);
   }
 
   &--invalid &__label {
-    color: var(--color-danger);
+    color: var(--color-error);
   }
 
   &--disabled &__label {
-    color: var(--text-color);
+    color: var(--color-key-primary);
   }
 }
 
 .error {
   @include text-overflow-ellipsis();
   @include font-caption-1();
-  color: var(--color-danger);
+  color: var(--color-error);
 
   &:not(&:empty) {
     margin-top: var(--space-xxxs);
@@ -199,7 +199,7 @@ export default defineComponent({
 .hint {
   @include text-overflow-ellipsis();
   @include font-caption-1();
-  color: var(--color-neutral-3);
+  color: var(--color-key-secondary);
 
   &:not(&:empty) {
     margin-top: var(--space-xxxs);

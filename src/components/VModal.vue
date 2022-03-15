@@ -81,7 +81,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "src/scss/constants";
+@import "src/scss/tokens";
 @import "src/scss/typography";
 
 ::v-deep(.modal-overlay) {
@@ -97,7 +97,7 @@ export default defineComponent({
 
 ::v-deep(.modal-container) {
   border-radius: var(--border-radius-lg);
-  background: var(--background-light-color);
+  background: var(--color-key-background);
   display: flex;
   flex-direction: column;
   max-height: 100%;
@@ -118,7 +118,7 @@ export default defineComponent({
 }
 
 .modal__title {
-  border-bottom: var(--border-xs) solid var(--background-key-primary);
+  border-bottom: var(--border-xs) solid var(--color-background-color-primary);
   padding: var(--space-xxxxl);
   @include font-large-title();
 }
@@ -131,7 +131,7 @@ export default defineComponent({
 
 .modal__action {
   align-items: center;
-  border-top: var(--border-xs) solid var(--background-key-primary);
+  border-top: var(--border-xs) solid var(--color-background-color-primary);
   display: flex;
   flex-shrink: 0;
   justify-content: center;

@@ -60,7 +60,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "src/scss/constants";
+@import "src/scss/tokens";
 @import "src/scss/mixins";
 @import "src/scss/typography";
 
@@ -111,32 +111,32 @@ export default defineComponent({
 .button--filled {
   &.button--black:not(:disabled) {
     @include buttonState(
-      var(--background-key-primary),
-      var(--background-key-primary-dark),
-      var(--background-key-primary-dark)
+      var(--color-background-color-primary),
+      var(--color-background-color-primary-dark),
+      var(--color-background-color-primary-dark)
     );
   }
 
   &.button--primary:not(:disabled) {
-    color: var(--text-light-color);
+    color: var(--color-key-background);
     @include buttonState(
-      var(--primary-color),
-      var(--primary-color-hover),
-      var(--primary-color-pressed)
+      var(--color-primary),
+      var(--color-primary-hover),
+      var(--color-primary-pressed)
     );
   }
 
   &.button--secondary:not(:disabled) {
-    color: var(--text-light-color);
+    color: var(--color-key-background);
     @include buttonState(
-      var(--secondary-color),
-      var(--secondary-color-hover),
-      var(--secondary-color-pressed)
+      var(--color-secondary),
+      var(--color-secondary-hover),
+      var(--color-secondary-pressed)
     );
   }
 
   &:disabled {
-    background: var(--background-key-primary);
+    background: var(--color-background-color-primary);
   }
 }
 
@@ -148,31 +148,31 @@ export default defineComponent({
   &.button--black:not(:disabled) {
     @include buttonState(
       transparent,
-      var(--background-key-primary),
-      var(--background-key-primary-dark)
+      var(--color-background-color-primary),
+      var(--color-background-color-primary-dark)
     );
   }
 
   &.button--primary:not(:disabled) {
     @include buttonState(
       transparent,
-      var(--background-primary),
-      var(--background-primary-dark)
+      var(--color-background-primary),
+      var(--color-background-primary-dark)
     );
-    color: var(--primary-color);
+    color: var(--color-primary);
   }
 
   &.button--secondary:not(:disabled) {
     @include buttonState(
       transparent,
-      var(--background-secondary),
-      var(--background-secondary-dark)
+      var(--color-background-color-secondary),
+      var(--color-background-color-secondary-dark)
     );
-    color: var(--secondary-color);
+    color: var(--color-secondary);
   }
 
   &:disabled {
-    border-color: var(--background-key-primary);
+    border-color: var(--color-background-color-primary);
   }
 }
 
@@ -183,27 +183,27 @@ export default defineComponent({
   &.button--black:not(:disabled) {
     @include buttonState(
       transparent,
-      var(--background-key-primary),
-      var(--background-key-primary-dark)
+      var(--color-background-color-primary),
+      var(--color-background-color-primary-dark)
     );
   }
 
   &.button--primary:not(:disabled) {
     @include buttonState(
       transparent,
-      var(--background-primary),
-      var(--background-primary-dark)
+      var(--color-background-primary),
+      var(--color-background-primary-dark)
     );
-    color: var(--primary-color);
+    color: var(--color-primary);
   }
 
   &.button--secondary:not(:disabled) {
     @include buttonState(
       transparent,
-      var(--background-secondary),
-      var(--background-secondary-dark)
+      var(--color-background-color-secondary),
+      var(--color-background-color-secondary-dark)
     );
-    color: var(--secondary-color);
+    color: var(--color-secondary);
   }
 }
 

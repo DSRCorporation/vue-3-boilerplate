@@ -110,7 +110,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "src/scss/constants";
+@import "src/scss/tokens";
 @import "src/scss/typography";
 
 .input {
@@ -121,11 +121,11 @@ export default defineComponent({
 
   @include font-body();
 
-  color: var(--text-color);
+  color: var(--color-key-primary);
   background-color: transparent;
 
   &::placeholder {
-    color: var(--color-neutral-3);
+    color: var(--color-key-secondary);
   }
 }
 </style>

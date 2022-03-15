@@ -83,7 +83,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-@import "../scss/constants";
+@import "../scss/tokens";
 @import "../scss/typography";
 @import "../scss/breakpoints";
 
@@ -110,7 +110,7 @@ export default defineComponent({
 
   &__search {
     grid-area: search;
-    --input-background-color: var(--background-color);
+    --input-background-color: var(--color-key-background-dark);
   }
 
   padding: 0 var(--space-xl);
@@ -127,7 +127,7 @@ export default defineComponent({
   align-items: center;
   justify-content: space-between;
   padding: var(--space-sm) var(--space-md);
-  background-color: var(--background-light-color);
+  background-color: var(--color-key-background);
 
   &__left {
     display: grid;

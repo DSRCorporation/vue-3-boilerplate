@@ -124,7 +124,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../../scss/constants";
+@import "../../scss/tokens";
 @import "../../scss/typography";
 @import "../../scss/mixins";
 
@@ -149,11 +149,11 @@ export default defineComponent({
 
   &:hover,
   &:focus {
-    background-color: var(--background-primary);
+    background-color: var(--color-background-primary);
   }
 
   &:active {
-    background-color: var(--background-primary-dark);
+    background-color: var(--color-background-primary-dark);
   }
 }
 </style>

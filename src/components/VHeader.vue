@@ -46,12 +46,12 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-@import "../scss/constants";
+@import "../scss/tokens";
 @import "../scss/typography";
 
 .header {
   padding: var(--space-sm) var(--space-xl);
-  background-color: var(--background-light-color);
+  background-color: var(--color-key-background);
   display: grid;
   grid-auto-flow: column;
   justify-content: space-between;

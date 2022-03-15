@@ -10,7 +10,13 @@
         readonly
       >
         <template #suffix>
-          <svg-icon icon="arrow_drop_down" class="icon" :class="iconClasses" />
+          <wc-svg-icon
+            href="/icons.svg"
+            symbol="arrow_drop_down"
+            class="icon"
+            :class="iconClasses"
+          >
+          </wc-svg-icon>
         </template>
 
         <template #error>
@@ -44,7 +50,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import { DropdownOption } from "./dropdown.types";
-import SvgIcon from "@/components/SvgIcon.vue";
+import "@dmitryrazinkov/svg-icon";
 import VPopupContent from "@/components/popup/VPopupContent.vue";
 import VPopup from "@/components/popup/VPopup.vue";
 import VInput from "@/components/VInput.vue";
@@ -54,7 +60,7 @@ type ValueType = string | null;
 export default defineComponent({
   name: "VDropdown",
 
-  components: { VPopupContent, VPopup, SvgIcon, VInput },
+  components: { VPopupContent, VPopup, VInput },
 
   props: {
     modelValue: {

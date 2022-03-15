@@ -12,7 +12,7 @@
 
       <v-button class="cats-view__add-btn button--icon">
         <template #icon>
-          <svg-icon icon="add"></svg-icon>
+          <wc-svg-icon href="/icons.svg" symbol="add"></wc-svg-icon>
         </template>
       </v-button>
     </header>
@@ -29,7 +29,10 @@
 
             <span class="cat-description__right">
               13
-              <svg-icon icon="favorite_border"></svg-icon>
+              <wc-svg-icon
+                href="/icons.svg"
+                symbol="favorite_border"
+              ></wc-svg-icon>
             </span>
           </span>
         </div>
@@ -46,7 +49,7 @@ import { computed, defineComponent, onBeforeMount } from "vue";
 import { useI18n } from "vue-i18n";
 import ListRenderer from "@/components/ListRenderer.vue";
 import UserAvatar from "@/components/user/UserAvatar.vue";
-import SvgIcon from "@/components/SvgIcon.vue";
+import "@dmitryrazinkov/svg-icon";
 import VButton from "@/components/VButton.vue";
 import VInput from "@/components/VInput.vue";
 
@@ -57,7 +60,6 @@ export default defineComponent({
     CatThumbnail,
     ListRenderer,
     UserAvatar,
-    SvgIcon,
     VButton,
   },
   setup() {

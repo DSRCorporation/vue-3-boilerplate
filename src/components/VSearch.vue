@@ -1,7 +1,12 @@
 <template>
   <v-input v-model="inputValue" :label="i18n.t('search')">
     <template #suffix>
-      <svg-icon class="icon" :icon="iconId" @click.stop="clearInput" />
+      <wc-svg-icon
+        class="icon"
+        href="/icons.svg"
+        :symbol="iconId"
+        @click.stop="clearInput"
+      ></wc-svg-icon>
     </template>
 
     <template #error>
@@ -17,13 +22,13 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import VInput from "@/components/VInput.vue";
-import SvgIcon from "@/components/SvgIcon.vue";
+import "@dmitryrazinkov/svg-icon";
 import { useI18n } from "vue-i18n";
 
 export default defineComponent({
   name: "VSearch",
 
-  components: { SvgIcon, VInput },
+  components: { VInput },
 
   props: {
     modelValue: {

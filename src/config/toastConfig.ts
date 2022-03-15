@@ -1,6 +1,5 @@
 import { h } from "vue";
 import { PluginOptions, POSITION, TYPE } from "vue-toastification";
-import SvgIcon from "@/components/SvgIcon.vue";
 
 export const toastConfig: PluginOptions = {
   position: POSITION.TOP_RIGHT,
@@ -17,17 +16,18 @@ export const toastConfig: PluginOptions = {
     },
     [TYPE.INFO]: {
       icon: {
-        render: () => h(SvgIcon, { icon: "info" }),
+        render: () => h("wc-svg-icon", { href: "/icons.svg", symbol: "info" }),
       },
     },
     [TYPE.ERROR]: {
       icon: {
-        render: () => h(SvgIcon, { icon: "warning" }),
+        render: () =>
+          h("wc-svg-icon", { href: "/icons.svg", symbol: "warning" }),
       },
     },
     [TYPE.SUCCESS]: {
       icon: {
-        render: () => h(SvgIcon, { icon: "check" }),
+        render: () => h("wc-svg-icon", { href: "/icons.svg", symbol: "check" }),
       },
     },
   },

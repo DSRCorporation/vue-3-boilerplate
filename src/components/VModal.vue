@@ -27,7 +27,7 @@
         @click="close"
       >
         <template #icon>
-          <svg-icon icon="close"></svg-icon>
+          <wc-svg-icon href="/icons.svg" symbol="close"></wc-svg-icon>
         </template>
       </v-button>
     </vue-final-modal>
@@ -37,13 +37,13 @@
 <script lang="ts">
 import { computed, defineComponent, PropType } from "vue";
 import VButton from "@/components/VButton.vue";
-import SvgIcon from "@/components/SvgIcon.vue";
+import "@dmitryrazinkov/svg-icon";
 
 type ModalSizes = "sm" | "md" | "lg";
 
 export default defineComponent({
   name: "VModal",
-  components: { VButton, SvgIcon },
+  components: { VButton },
   inheritAttrs: false,
   emits: {
     confirm: null,

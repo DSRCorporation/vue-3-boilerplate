@@ -43,7 +43,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "../scss/constants";
+@import "../scss/tokens";
 
 .list {
   list-style: none;

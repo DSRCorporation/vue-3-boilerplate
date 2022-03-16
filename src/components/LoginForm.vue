@@ -98,12 +98,12 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-@import "../scss/constants";
+@import "../scss/tokens";
 @import "../scss/typography";
 
 .login-form {
   display: grid;
-  background-color: var(--background-light-color);
+  background-color: var(--color-key-background);
   padding: var(--space-xxxxxl) var(--space-xxxxl);
   border-radius: var(--border-radius-lg);
 

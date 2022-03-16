@@ -24,6 +24,7 @@
     "vue-toastification": "^2.0.0-rc.5",
     "vuex": "^4.0.2",
     "yup": "^0.32.11",
+    "@dmitryrazinkov/tokens": "^1.2.2",
     "@dmitryrazinkov/svg-icon": "^1.0.3",
     "lit": "^2.2.0"
   },

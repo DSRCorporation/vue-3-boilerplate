@@ -41,7 +41,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "scss/constants";
+@import "scss/tokens";
 @import "scss/typography";
 
 * {
@@ -54,8 +54,8 @@ body,
 html {
   font-family: var(--font-family);
   font-size: 16px; // it's rem value
-  background-color: var(--background-color);
-  color: var(--text-color);
+  background-color: var(--color-key-background-dark);
+  color: var(--color-key-primary);
   height: 100%;
   width: 100%;
 }

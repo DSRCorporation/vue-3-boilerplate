@@ -60,10 +60,10 @@ input {
 
   // checked
   &:checked {
-    background-color: var(--primary-color);
+    background-color: var(--color-primary);
 
     & + span:before {
-      border-color: var(--primary-color);
+      border-color: var(--color-primary);
     }
 
     & + span:after {
@@ -77,16 +77,16 @@ input {
       cursor: initial;
 
       &:before {
-        border-color: var(--background-key-primary);
+        border-color: var(--color-background-color-primary);
       }
 
       &:after {
-        background-color: var(--background-key-primary-dark);
+        background-color: var(--color-background-color-primary-dark);
       }
     }
 
     &:checked + span:before {
-      border-color: var(--background-primary-dark);
+      border-color: var(--color-background-primary-dark);
     }
   }
 }
@@ -122,7 +122,7 @@ span {
     border-radius: 50%;
     width: calc(#{$radio-size} / 2);
     height: calc(#{$radio-size} / 2);
-    background-color: var(--primary-color);
+    background-color: var(--color-primary);
     transform: radioMarkTransform(0);
     @include transition-default(transform);
   }

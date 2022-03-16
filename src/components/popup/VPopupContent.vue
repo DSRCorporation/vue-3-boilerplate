@@ -13,7 +13,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "src/scss/constants";
+@import "src/scss/tokens";
 
 .popup-content {
   overflow: auto;
@@ -21,6 +21,6 @@ export default defineComponent({
   padding: var(--space-xs) 0;
   box-shadow: var(--box-shadow-medium);
   border-radius: var(--border-radius-md);
-  background-color: var(--background-light-color);
+  background-color: var(--color-key-background);
 }
 </style>

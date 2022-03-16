@@ -1,4 +1,4 @@
-@import "src/scss/constants";
+@import "src/scss/tokens";
 @import "src/scss/mixins";
 
 $checkbox-size: 18px;
@@ -52,7 +52,7 @@ $ripple-hover-focus-opacity: 0.16;
   margin: 0;
   width: $ripple-size;
   height: $ripple-size;
-  background-color: var(--primary-color);
+  background-color: var(--color-primary);
   box-shadow: none;
   outline: none;
   opacity: 0;
@@ -71,7 +71,7 @@ $ripple-hover-focus-opacity: 0.16;
     @include transition(0s, trasform, opacity);
 
     & + span:before {
-      border-color: var(--primary-color);
+      border-color: var(--color-primary);
     }
   }
 

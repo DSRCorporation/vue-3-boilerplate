@@ -1,17 +1,17 @@
-@import "constants";
+@import "tokens";
 
 $vt-font-family: inherit;
 $vt-toast-min-width: 328px;
 $vt-toast-min-height: auto;
 
-$vt-color-default: $color-key-primary;
+$vt-color-default: var(--color-key-primary);
 $vt-text-color-default: white;
 
-$vt-color-error: lighten($danger-color, 40);
-$vt-text-color-error: $color-key-primary;
+$vt-color-error: rgba(var(--color-error), 0.4);
+$vt-text-color-error: var(--color-key-primary);
 
-$vt-color-success: lighten($primary-color, 50);
-$vt-text-color-success: $color-key-primary;
+$vt-color-success: rgba(var(--color-primary), 0.5);
+$vt-text-color-success: var(--color-key-primary);
 
 // todo: add variables for info, warning types
 $vt-color-info: #2196f3;
@@ -34,10 +34,10 @@ $vt-text-color-warning: #fff;
   padding: var(--space-sm) var(--space-xl);
 
   &--success svg {
-    color: $primary-color;
+    color: var(--color-primary);
   }
 
   &--error svg {
-    color: $danger-color;
+    color: var(--color-error);
   }
 }

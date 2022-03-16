@@ -34,7 +34,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-@import "../scss/constants";
+@import "../scss/tokens";
 @import "../scss/typography";
 
 .cat-thumbnail {

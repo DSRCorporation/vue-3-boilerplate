@@ -77,9 +77,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "../scss/tokens";
 @import "../scss/typography";
 @import "../scss/mixins";
+@import "../scss/breakpoints";
 
 .field-wrapper {
   display: grid;

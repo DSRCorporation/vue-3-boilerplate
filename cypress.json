@@ -1,7 +1,7 @@
 {
-  "pluginsFile": "tests/e2e/plugins/index.js",
-  "supportFile": "tests/e2e/support/index.js",
-  "integrationFolder": "tests/e2e/specs",
-  "testFiles": "**/*.spec.js*",
-  "componentFolder": "tests/e2e/components"
+  "baseUrl": "http://localhost:5050",
+  "component": {
+    "componentFolder": "src",
+    "testFiles": "**/__tests__/*.spec.{js,ts,jsx,tsx}"
+  }
 }

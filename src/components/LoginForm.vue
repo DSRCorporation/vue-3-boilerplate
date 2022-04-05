@@ -98,7 +98,6 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-@import "../scss/tokens";
 @import "../scss/typography";
 
 .login-form {

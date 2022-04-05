@@ -110,7 +110,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "src/scss/tokens";
 @import "src/scss/typography";
 
 .input {

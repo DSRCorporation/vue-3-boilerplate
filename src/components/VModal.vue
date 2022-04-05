@@ -81,8 +81,14 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "src/scss/tokens";
 @import "src/scss/typography";
+
+* {
+  --modal-backdrop-filter: blur(8px);
+  --modal-size-small: 464px;
+  --modal-size-medium: 624px;
+  --modal-size-large: 784px;
+}
 
 ::v-deep(.modal-overlay) {
   backdrop-filter: var(--modal-backdrop-filter);

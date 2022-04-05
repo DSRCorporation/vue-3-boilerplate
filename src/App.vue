@@ -41,8 +41,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "scss/tokens";
 @import "scss/typography";
+@import "@dmitryrazinkov/tokens";
 
 * {
   box-sizing: border-box;

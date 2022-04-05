@@ -19,8 +19,6 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-@import "src/scss/tokens";
-
 .avatar {
   width: calc(1.5 * var(--space-unit-base));
   height: calc(1.5 * var(--space-unit-base));
@@ -28,7 +26,7 @@ export default defineComponent({
   display: grid;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-primary);
-  color: var(--color-key-background);
+  background-color: var(--primary-color);
+  color: var(--text-light-color);
 }
 </style>

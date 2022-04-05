@@ -43,8 +43,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "../scss/tokens";
-
 .list {
   list-style: none;
   padding: 0;

@@ -13,8 +13,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "src/scss/tokens";
-
 .popup-content {
   overflow: auto;
   max-height: calc(100 * var(--space-md));

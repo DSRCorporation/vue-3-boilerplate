@@ -1,34 +1,33 @@
 <template>
-  <v-input v-model="inputValue" :label="i18n.t('search')">
-    <template #suffix>
+  <wc-input v-model="inputValue" :label="i18n.t('search')">
       <wc-svg-icon
+          slot="suffix"
         class="icon"
         href="/icons.svg"
         :symbol="iconId"
         @click.stop="clearInput"
       ></wc-svg-icon>
-    </template>
 
-    <template #error>
+    <wc-error slot="error">
       <slot name="error"></slot>
-    </template>
+    </wc-error>
 
-    <template #hint>
+    <wc-hint slot="hint">
       <slot name="hint"></slot>
-    </template>
-  </v-input>
+    </wc-hint>
+  </wc-input>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import VInput from "@/components/VInput.vue";
 import "@dmitryrazinkov/svg-icon";
+import "@dmitryrazinkov/input";
+import "@dmitryrazinkov/error";
+import "@dmitryrazinkov/hint";
 import { useI18n } from "vue-i18n";
 
 export default defineComponent({
   name: "VSearch",
-
-  components: { VInput },
 
   props: {
     modelValue: {

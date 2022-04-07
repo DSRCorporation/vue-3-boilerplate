@@ -9,9 +9,7 @@
     ></wc-svg-icon>
 
 
-    <slot name="error"></slot>
-
-    <slot name="hint"></slot>
+    <slot></slot>
   </wc-input>
 </template>
 

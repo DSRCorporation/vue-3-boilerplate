@@ -28,11 +28,9 @@
       :invalid="!!passwordError"
       v-model="password"
     >
-      <template #error>
         <wc-error slot="error">
           {{ passwordError }}
         </wc-error>
-      </template>
     </v-password>
 
     <div class="login-form__buttons">

@@ -17,7 +17,7 @@
       :invalid="!!emailError"
       v-model="email"
     >
-      <wc-error v-if="emailError" slot="error">
+      <wc-error slot="error">
         {{ emailError }}
       </wc-error>
     </wc-input>

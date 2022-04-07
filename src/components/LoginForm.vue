@@ -9,17 +9,18 @@
       {{ i18n.t("welcome") }}
     </h1>
 
-    <v-input
+    <wc-input
       class="login-form__input"
       label="Email"
       name="email"
+      id="email"
       :invalid="!!emailError"
       v-model="email"
     >
-      <template #error>
+      <wc-error slot="error">
         {{ emailError }}
-      </template>
-    </v-input>
+      </wc-error>
+    </wc-input>
 
     <v-password
       class="login-form__input"
@@ -27,35 +28,34 @@
       :invalid="!!passwordError"
       v-model="password"
     >
-      <template #error>
-        {{ passwordError }}
-      </template>
+        <wc-error slot="error">
+          {{ passwordError }}
+        </wc-error>
     </v-password>
 
     <div class="login-form__buttons">
-      <v-button type="submit" class="login-form__submit">{{
-        i18n.t("login")
-      }}</v-button>
+      <wc-button type="submit" class="login-form__submit" size="big">
+        <span>{{i18n.t("login")}}</span>
+      </wc-button>
     </div>
   </form>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import VButton from "@/components/VButton.vue";
-import VInput from "@/components/VInput.vue";
 import { useI18n } from "vue-i18n";
 import { useForm, useField } from "vee-validate";
 import * as yup from "yup";
 import { ServerError } from "@/types/serverError";
 import VPassword from "@/components/VPassword.vue";
+import "@dmitryrazinkov/input";
+import "@dmitryrazinkov/button";
+import "@dmitryrazinkov/error";
 
 export default defineComponent({
   name: "LoginForm",
   components: {
     VPassword,
-    VButton,
-    VInput,
   },
   props: {
     serverErrors: {
@@ -115,6 +115,10 @@ export default defineComponent({
   }
 
   &__buttons {
+    display: grid;
+  }
+
+  &__submit {
     display: grid;
   }
 }

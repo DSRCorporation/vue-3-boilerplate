@@ -19,31 +19,28 @@
         <slot name="action" :close="close"></slot>
       </div>
 
-      <v-button
+      <wc-button
         class="modal__close"
-        size="sm"
-        variant="noBg"
-        variant-color="black"
+        size="small"
+        variant="no-bg"
+        iconOnly="true"
         @click="close"
       >
-        <template #icon>
-          <wc-svg-icon href="/icons.svg" symbol="close"></wc-svg-icon>
-        </template>
-      </v-button>
+        <wc-svg-icon slot="icon" href="/icons.svg" symbol="close"></wc-svg-icon>
+      </wc-button>
     </vue-final-modal>
   </teleport>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from "vue";
-import VButton from "@/components/VButton.vue";
+import "@dmitryrazinkov/button";
 import "@dmitryrazinkov/svg-icon";
 
 type ModalSizes = "sm" | "md" | "lg";
 
 export default defineComponent({
   name: "VModal",
-  components: { VButton },
   inheritAttrs: false,
   emits: {
     confirm: null,

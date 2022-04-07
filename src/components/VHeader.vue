@@ -3,23 +3,14 @@
     <div class="header__logo">
       <img class="header__logo__icon" src="/logo.svg" />
     </div>
-    <v-button
-      @click="$emit('logout', $event)"
-      v-if="isAuthenticated"
-      class="button--wrapper"
-    >
-      <!--todo name is stub-->
-      <template #icon>
-        <user-avatar name="A"></user-avatar>
-      </template>
-    </v-button>
+    <!--todo name is stub-->
+    <user-avatar @click="$emit('logout', $event)" v-if="isAuthenticated" name="A"></user-avatar>
   </header>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from "vue";
 import { useI18n } from "vue-i18n";
-import VButton from "@/components/VButton.vue";
 import UserAvatar from "@/components/user/UserAvatar.vue";
 import { useStore } from "@/store";
 import { CommonGetterTypes } from "@/store/common/types";
@@ -27,8 +18,7 @@ import { CommonGetterTypes } from "@/store/common/types";
 export default defineComponent({
   name: "VHeader",
   components: {
-    UserAvatar,
-    VButton,
+    UserAvatar
   },
   setup() {
     const store = useStore();

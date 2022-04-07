@@ -26,7 +26,7 @@ export default defineComponent({
   display: grid;
   align-items: center;
   justify-content: center;
-  background-color: var(--primary-color);
-  color: var(--text-light-color);
+  background-color: var(--color-primary);
+  color: var(--color-key-background);
 }
 </style>

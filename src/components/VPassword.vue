@@ -1,34 +1,28 @@
 <template>
-  <v-input :type="inputType" v-model="inputValue" :label="i18n.t('password')">
-    <template #suffix>
-      <wc-svg-icon
+  <wc-input :type="inputType" v-model="inputValue" :label="i18n.t('password')">
+    <wc-svg-icon
+        slot="suffix"
         class="icon"
         href="/icons.svg"
         :symbol="iconId"
         @click.stop="toggleVisibility"
-      ></wc-svg-icon>
-    </template>
+    ></wc-svg-icon>
 
-    <template #error>
-      <slot name="error"></slot>
-    </template>
 
-    <template #hint>
-      <slot name="hint"></slot>
-    </template>
-  </v-input>
+    <slot></slot>
+  </wc-input>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import VInput from "@/components/VInput.vue";
+import {defineComponent} from "vue";
 import "@dmitryrazinkov/svg-icon";
-import { useI18n } from "vue-i18n";
+import "@dmitryrazinkov/input";
+import "@dmitryrazinkov/error";
+import "@dmitryrazinkov/hint";
+import {useI18n} from "vue-i18n";
 
 export default defineComponent({
   name: "VPassword",
-
-  components: { VInput },
 
   props: {
     modelValue: {
@@ -41,7 +35,7 @@ export default defineComponent({
     "update:modelValue": null,
   },
 
-  setup() {
+  setup(props, ctx) {
     const i18n = useI18n();
 
     return {

@@ -4,17 +4,15 @@
       <h1>
         {{ i18n.t("cats") }}
       </h1>
-      <v-input
+      <v-search
         class="cats-view__search"
         :label="i18n.t('search')"
         v-model="search"
-      ></v-input>
+      ></v-search>
 
-      <v-button class="cats-view__add-btn button--icon">
-        <template #icon>
-          <wc-svg-icon href="/icons.svg" symbol="add"></wc-svg-icon>
-        </template>
-      </v-button>
+      <wc-button size="big" class="cats-view__add-btn" iconOnly>
+        <wc-svg-icon slot="icon" href="/icons.svg" symbol="add"></wc-svg-icon>
+      </wc-button>
     </header>
 
     <list-renderer :items="cats" :is-thumbnail="true">
@@ -50,17 +48,16 @@ import { useI18n } from "vue-i18n";
 import ListRenderer from "@/components/ListRenderer.vue";
 import UserAvatar from "@/components/user/UserAvatar.vue";
 import "@dmitryrazinkov/svg-icon";
-import VButton from "@/components/VButton.vue";
-import VInput from "@/components/VInput.vue";
+import "@dmitryrazinkov/button";
+import VSearch from "@/components/VSearch.vue";
 
 export default defineComponent({
   name: "CatsView",
   components: {
-    VInput,
+    VSearch,
     CatThumbnail,
     ListRenderer,
-    UserAvatar,
-    VButton,
+    UserAvatar
   },
   setup() {
     const store = useStore();

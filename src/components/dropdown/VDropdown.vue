@@ -53,14 +53,13 @@ import { DropdownOption } from "./dropdown.types";
 import "@dmitryrazinkov/svg-icon";
 import VPopupContent from "@/components/popup/VPopupContent.vue";
 import VPopup from "@/components/popup/VPopup.vue";
-import VInput from "@/components/VInput.vue";
 
 type ValueType = string | null;
 
 export default defineComponent({
   name: "VDropdown",
 
-  components: { VPopupContent, VPopup, VInput },
+  components: { VPopupContent, VPopup },
 
   props: {
     modelValue: {

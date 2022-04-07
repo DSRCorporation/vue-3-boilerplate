@@ -10,7 +10,7 @@
         v-model="search"
       ></v-search>
 
-      <wc-button size="big" class="cats-view__add-btn" iconOnly="true">
+      <wc-button size="big" class="cats-view__add-btn" iconOnly>
         <wc-svg-icon slot="icon" href="/icons.svg" symbol="add"></wc-svg-icon>
       </wc-button>
     </header>

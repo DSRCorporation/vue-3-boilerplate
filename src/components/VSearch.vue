@@ -8,13 +8,9 @@
         @click.stop="clearInput"
       ></wc-svg-icon>
 
-    <wc-error slot="error">
-      <slot name="error"></slot>
-    </wc-error>
+    <slot name="error"></slot>
 
-    <wc-hint slot="hint">
-      <slot name="hint"></slot>
-    </wc-hint>
+    <slot name="hint"></slot>
   </wc-input>
 </template>
 

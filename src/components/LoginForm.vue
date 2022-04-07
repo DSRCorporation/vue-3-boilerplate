@@ -29,7 +29,9 @@
       v-model="password"
     >
       <template #error>
-        {{ passwordError }}
+        <wc-error slot="error">
+          {{ passwordError }}
+        </wc-error>
       </template>
     </v-password>
 

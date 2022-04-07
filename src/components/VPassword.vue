@@ -8,13 +8,10 @@
         @click.stop="toggleVisibility"
     ></wc-svg-icon>
 
-    <wc-error slot="error">
-      <slot name="error"></slot>
-    </wc-error>
 
-    <wc-hint slot="hint">
-      <slot name="hint"></slot>
-    </wc-hint>
+    <slot name="error"></slot>
+
+    <slot name="hint"></slot>
   </wc-input>
 </template>
 
@@ -40,7 +37,7 @@ export default defineComponent({
     "update:modelValue": null,
   },
 
-  setup() {
+  setup(props, ctx) {
     const i18n = useI18n();
 
     return {
